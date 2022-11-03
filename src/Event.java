@@ -13,7 +13,7 @@ public class Event {
     private String eventDescription;
     private ArrayList<Attendees> guestsInfo;
     private Status EventStatus;
-
+    private Alarm alarm;
 
     public void addAttender(){}
     public void deleteAttender(){}

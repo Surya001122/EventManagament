@@ -6,25 +6,14 @@ public class Alarm implements Notify{
     Reminder reminder;
     Alarm(int seconds)
     {
-        reminder = new Reminder();
         timer = new Timer();
-        reminder.setSeconds(seconds);
-        timer.schedule(new Reminder(),10000);
+        timer.schedule(new Reminder(),seconds* 1000L);
     }
     public class Reminder extends TimerTask{
-        private int seconds;
-
-        public int getSeconds() {
-            return seconds;
-        }
-
-        public void setSeconds(int seconds) {
-            this.seconds = seconds;
-        }
-
         @Override
         public void run() {
             displayMessage();
+            timer.cancel();
         }
 
     }
@@ -35,6 +24,6 @@ public class Alarm implements Notify{
 
     @Override
     public void displayMessage() {
-        System.out.println("THANK YOU...");
+        System.out.println("Your event will start in 5 minutes...");
     }
 }
