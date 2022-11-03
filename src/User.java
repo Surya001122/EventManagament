@@ -8,7 +8,7 @@ public class User {
     private String userPhoneNumber;
     private MyCalendar myCalendar;
     public User(){}
-    public User(String userName, String userId, Gender gender, String userPassword, String userWorkType, String userLocation, String userPhoneNumber, MyCalendar myCalendar) {
+    public User(String userName, String userId, Gender gender, String userPassword, String userWorkType, String userLocation, String userPhoneNumber) {
         this.userName = userName;
         this.userId = userId;
         this.gender = gender;
@@ -16,7 +16,7 @@ public class User {
         this.userWorkType = userWorkType;
         this.userLocation = userLocation;
         this.userPhoneNumber = userPhoneNumber;
-        this.myCalendar = myCalendar;
+        myCalendar = new MyCalendar();
     }
 
     public void updatePersonalInformation(){}

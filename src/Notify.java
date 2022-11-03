@@ -1,4 +1,4 @@
-abstract class Notify {
+public interface Notify {
     abstract void displayMessage();
-    abstract void changeMessage();
+
 }

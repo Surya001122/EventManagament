@@ -1,7 +1,7 @@
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Alarm extends Notify{
+public class Alarm implements Notify{
     Timer timer;
     Alarm(int seconds)
     {
@@ -18,6 +18,4 @@ public class Alarm extends Notify{
     }
     @Override
     public void displayMessage() {}
-    @Override
-    public void changeMessage(){}
 }

@@ -16,7 +16,6 @@ public class MyCalendar {
     public void viewTasks(int day,int month){} // view tasks in months
     public void viewTasks(int day){} // view tasks in weeks
     public void viewAttendees(){} // view attenders for an event
-
     public Event getEvent(){return new Event();}
     public Task  getTask(){return new Task();}
     public String getAttenderName(){return null;}
