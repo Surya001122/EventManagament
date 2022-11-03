@@ -29,5 +29,6 @@ public class User {
     public void updateTask(){}
     public void viewTasks(){}
     public void viewEvents(){}
+    public void viewMyCalendar(){}
     public void viewAttendees(){}
 }

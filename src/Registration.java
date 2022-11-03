@@ -3,11 +3,15 @@ public class Registration {
     private HashMap<String,String> usersLoginInfo;
     private Verification verification;
     public void SignUp(){}
+
+
     private class Verification{
         public void userVerification(){}
         public void adminVerification(){}
 
     }
+
+
     void createLogin(){
         verification = new Verification();
     }

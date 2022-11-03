@@ -10,7 +10,7 @@ public class Admin {
     private String adminPassword;
     private String adminLocation;
     private String adminPhoneNumber;
-    HashMap<User,MyCalendar> usersCalendar;
+    private HashMap<User,MyCalendar> usersCalendar;
 
     public void addUsers(){}
     public void removeUsers(){}
