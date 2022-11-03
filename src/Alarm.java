@@ -18,11 +18,6 @@ public class Alarm implements Notify{
 
     }
     @Override
-    public void makeSound() {
-
-    }
-
-    @Override
     public void displayMessage() {
         System.out.println("Your event will start in 5 minutes...");
     }
