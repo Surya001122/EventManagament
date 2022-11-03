@@ -18,4 +18,6 @@ public class Alarm extends Notify{
     }
     @Override
     public void displayMessage() {}
+    @Override
+    public void changeMessage(){}
 }

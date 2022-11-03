@@ -12,7 +12,6 @@ public class Admin {
     private String adminPhoneNumber;
     HashMap<User,MyCalendar> usersCalendar;
 
-
     public void addUsers(){}
     public void removeUsers(){}
     public void viewUsers(){}

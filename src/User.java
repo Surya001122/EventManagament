@@ -27,4 +27,7 @@ public class User {
     public void createTask(){}
     public void cancelTask(){}
     public void updateTask(){}
+    public void viewTasks(){}
+    public void viewEvents(){}
+    public void viewAttendees(){}
 }
