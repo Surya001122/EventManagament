@@ -7,7 +7,17 @@ public class User {
     private String userLocation;
     private String userPhoneNumber;
     private MyCalendar myCalendar;
-
+    public User(){}
+    public User(String userName, String userId, Gender gender, String userPassword, String userWorkType, String userLocation, String userPhoneNumber, MyCalendar myCalendar) {
+        this.userName = userName;
+        this.userId = userId;
+        this.gender = gender;
+        this.userPassword = userPassword;
+        this.userWorkType = userWorkType;
+        this.userLocation = userLocation;
+        this.userPhoneNumber = userPhoneNumber;
+        this.myCalendar = myCalendar;
+    }
 
     public void updatePersonalInformation(){}
     public void changeMyPassword(){}

@@ -1,9 +1,8 @@
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Alarm implements Notify{
+public class Alarm extends Notify{
     Timer timer;
-    Reminder reminder;
     Alarm(int seconds)
     {
         timer = new Timer();
@@ -18,7 +17,5 @@ public class Alarm implements Notify{
 
     }
     @Override
-    public void displayMessage() {
-        System.out.println("Your event will start in 5 minutes...");
-    }
+    public void displayMessage() {}
 }

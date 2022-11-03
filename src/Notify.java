@@ -1,3 +1,4 @@
-public interface Notify {
-    void displayMessage();
+abstract class Notify {
+
+    abstract void displayMessage();
 }

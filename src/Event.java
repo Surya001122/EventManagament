@@ -11,7 +11,7 @@ public class Event {
     private Time eventEndTime;
     private String eventLocation;
     private String eventDescription;
-    private ArrayList<User> Attendeees;
+    private ArrayList<String> AttendeeesName;
     private Status EventStatus;
     private Alarm alarm;
 
