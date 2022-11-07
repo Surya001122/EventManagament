@@ -6,16 +6,16 @@ import java.util.HashMap;
 import java.util.logging.Handler;
 
 public class Event {
+    private static int eId = 1;
+    private int eventId;
     private String eventTitle;
     private Type eventType;
-    private Date eventStartDate;
-    private Date eventEndDate;
-    private Time eventStartTime;
-    private Time eventEndTime;
+    private String eventStartTime;
+    private String eventEndTime;
     private String eventLocation;
     private String eventDescription;
     private HashMap<String,Status> AttendeesName;
-    private Status EventStatus;
+    private Status eventStatus;
     private Alarm alarm;
 
     public void addAttender(){}

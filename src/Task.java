@@ -4,14 +4,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Task {
+    private static int tId = 1;
+    private int taskId;
     private String taskTitle;
     private Type taskType;
-    private Date taskStartDate;
-    private Date taskEndDate;
-    private Time taskStartTime;
-    private Time taskEndTime;
     private String taskDetails;
     private Status taskStatus;
-
-    public void editTask(){}
 }

@@ -1,4 +1,5 @@
 public interface Notify {
-    abstract void displayMessage();
+    abstract void displayMessageForEvent();
 
+    abstract void playRingtoneForEvent();
 }

@@ -1,22 +1,27 @@
 import java.util.HashMap;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 public class Registration {
+    Scanner sc = new Scanner(System.in);
     private HashMap<String,String> usersLoginInfo;
+    private static int loginId = 1;
     private Verification verification;
-    public void SignUp(){}
+    private Operations operations;
+    public Registration(){
+        usersLoginInfo = new HashMap<>();
+        operations = new Operations();
+    }
 
-
+    public void userSignUp(Admin admin){}
     private class Verification{
-        public void userVerification(){}
-        public void adminVerification(){}
+        public void userVerification(Admin admin){}
+        public void adminVerification(Admin admin){}
 
     }
-
-
-    void createLogin(){
-        verification = new Verification();
-    }
-    public void validatePassword() {}
-    public void validatePhoneNumber(){}
-    public void generateUserLoginId(){}
-    public void generateAdminLoginId(){}
+    public void createLogin(Admin admin){}
+    public void addLoginInfo(String id,String password) {}
+    public boolean validatePassword(String password) {return true;}
+    public boolean validatePhoneNumber(String phoneNumber){return true;}
+    public String generateUserLoginId(String name){return null;}
 }
