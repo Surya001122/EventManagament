@@ -7,16 +7,15 @@ public class Registration {
     private HashMap<String,String> usersLoginInfo;
     private static int loginId = 1;
     private Verification verification;
-    private Operations operations;
     public Registration(){
         usersLoginInfo = new HashMap<>();
-        operations = new Operations();
     }
 
     public void userSignUp(Admin admin){}
+
     private class Verification{
-        public void userVerification(Admin admin){}
-        public void adminVerification(Admin admin){}
+        public boolean userVerification(Admin admin){return true;}
+        public boolean adminVerification(Admin admin){return true;}
 
     }
     public void createLogin(Admin admin){}

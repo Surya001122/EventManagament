@@ -11,8 +11,6 @@ public class Notifier implements Notify{
     private class Reminder extends TimerTask{
         @Override
         public void run() {
-            displayMessageForEvent();
-            playRingtoneForEvent();
             timer.cancel();
         }
 
