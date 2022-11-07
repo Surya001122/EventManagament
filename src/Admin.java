@@ -12,12 +12,13 @@ public class Admin {
     private String adminPassword;
     private String adminLocation;
     private String adminPhoneNumber;
-    private ArrayList<User>users;
+    private ArrayList<User> users;
 
     public void addUsers(){}
     public void removeUsers(){}
     public void viewUsers(){}
     public User getUser(){return new User();}
     public void viewCalendars(){}
+    public void addPublicHolidays(){}
     public static String getBirthDate(String phoneNumber){return null;}
 }

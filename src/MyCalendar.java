@@ -21,9 +21,14 @@ public class MyCalendar {
     public Task  getTask(){return new Task();}
     public void displayEvent(){}
     public void displayTask(){}
-    public void addContacts(){}
-    public void removeContacts(){}
-    public void viewContacts(){}
-    public long findDifferenceInDates(){return 1;} // return total hours between 2 dates.
+
+
+    public void addMyContacts(){}
+    public void removeMyContacts(){}
+    public void viewMyContacts(){}
+    public void addMyHolidays(){}
+    public void removeMyHolidays(){}
+    public void viewMyHolidays(){}
+    public long findDifferenceInDates(){return 1;}
 
 }

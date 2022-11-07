@@ -22,8 +22,13 @@ public class User {
     public void viewEvents(){}
     public void viewMyCalendar(){}
     public void viewAttendees() {}
-    public void addContacts(){}
-    public void removeContacts(){}
-    public void viewContacts(){}
+
+
+    public void addMyContacts(){}
+    public void removeMyContacts(){}
+    public void viewMyContacts(){}
     public void removeAccount(){}
+    public void addMyHolidays(){}
+    public void removeMyHolidays(){}
+    public void viewMyHolidays(){}
 }
