@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class MyCalendar {
     private ArrayList<Task> myTasks;
     private ArrayList<Event> myEvents;
-    private HashMap<String,String> myContacts;
+    private HashMap<String,String> myContacts; // phoneNumber of friends and their dob..If the friends does not have login, default values will be null.
     public void addEvents(){} // used to create an event
     public void cancelEvents(){} // used to delete an event
     public void updateEvents(){} // use to update an event
@@ -24,6 +24,6 @@ public class MyCalendar {
     public void addContacts(){}
     public void removeContacts(){}
     public void viewContacts(){}
-    public long findDifferenceInDates(){return 1;}
+    public long findDifferenceInDates(){return 1;} // return total hours between 2 dates.
 
 }
