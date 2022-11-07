@@ -1,8 +1,11 @@
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+
 public class MyCalendar {
     private ArrayList<Task> myTasks;
     private ArrayList<Event> myEvents;
+    private HashMap<String,String> myContacts;
     public void addEvents(){} // used to create an event
     public void cancelEvents(){} // used to delete an event
     public void updateEvents(){} // use to update an event
@@ -18,5 +21,9 @@ public class MyCalendar {
     public Task  getTask(){return new Task();}
     public void displayEvent(){}
     public void displayTask(){}
+    public void addContacts(){}
+    public void removeContacts(){}
+    public void viewContacts(){}
+    public long findDifferenceInDates(){return 1;}
 
 }

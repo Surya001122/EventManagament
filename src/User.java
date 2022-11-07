@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class User {
     private String userName;
     private String userId;
@@ -6,13 +8,13 @@ public class User {
     private String userWorkType;
     private String userLocation;
     private String userPhoneNumber;
+    private String dateOfBirth;
     private MyCalendar myCalendar;
     public void updatePersonalInformation(){}
     public void changeMyPassword(){}
     public void createEvent(){}
     public void cancelEvent(){}
     public void updateEvent(){}
-
     public void createTask(){}
     public void cancelTask(){}
     public void updateTask(){}
@@ -20,4 +22,8 @@ public class User {
     public void viewEvents(){}
     public void viewMyCalendar(){}
     public void viewAttendees() {}
+    public void addContacts(){}
+    public void removeContacts(){}
+    public void viewContacts(){}
+    public void removeAccount(){}
 }

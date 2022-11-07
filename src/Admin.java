@@ -19,4 +19,6 @@ public class Admin {
     public void viewUsers(){}
     public User getUser(){return new User();}
     public void viewCalendars(){}
+    public static String getContactName(){return null;}
+    public static String getContactNumber(){return null;}
 }

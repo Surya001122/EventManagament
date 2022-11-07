@@ -2,6 +2,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Calendar;
 public class Registration {
 
     private HashMap<String,String> usersLoginInfo;
@@ -19,7 +20,6 @@ public class Registration {
     }
     public void createLogin(Admin admin){}
     public void addLoginInfo(String id,String password) {}
-    public boolean validatePassword(String password) {return true;}
-    public boolean validatePhoneNumber(String phoneNumber){return true;}
-    public String generateUserLoginId(String name){return null;}
+    public static boolean validatePassword(String password) {return true;}
+    public static boolean validatePhoneNumber(String phoneNumber){return true;}
 }
