@@ -23,7 +23,6 @@ public class User {
     public void viewMyCalendar(){}
     public void viewAttendees() {}
 
-
     public void addMyContacts(){}
     public void removeMyContacts(){}
     public void viewMyContacts(){}

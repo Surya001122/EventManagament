@@ -22,7 +22,6 @@ public class MyCalendar {
     public void displayEvent(){}
     public void displayTask(){}
 
-
     public void addMyContacts(){}
     public void removeMyContacts(){}
     public void viewMyContacts(){}
