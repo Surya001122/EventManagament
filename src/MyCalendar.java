@@ -22,7 +22,8 @@ public class MyCalendar {
     public void displayEvent(){}
     public void displayTask(){}
 
-    public void addMyContacts(){}
+    public void addMyContacts(){} // user will add his contacts and the admin module will check for the user with the phoneNumber7
+                                 // sent by this user and the birthday event will be set by admin module accordingly
     public void removeMyContacts(){}
     public void viewMyContacts(){}
     public void viewMyHolidays(){}
