@@ -7,7 +7,6 @@ public class Task {
     private static int tId = 1;
     private int taskId;
     private String taskTitle;
-    private Type taskType;
     private String taskDetails;
     private Status taskStatus;
 }

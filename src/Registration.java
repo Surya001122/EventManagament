@@ -3,13 +3,12 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Registration {
-    Scanner sc = new Scanner(System.in);
+
     private HashMap<String,String> usersLoginInfo;
+
     private static int loginId = 1;
+
     private Verification verification;
-    public Registration(){
-        usersLoginInfo = new HashMap<>();
-    }
 
     public void userSignUp(Admin admin){}
 
