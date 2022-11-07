@@ -22,7 +22,5 @@ public class Admin {
 
     public void addPublicHolidays(){} // admin can add holidays manually before creating the calendar instance for each user.
     public void removeHolidays(){} // admin can remove holidays
-    public static void setBirthdayEvent(String phoneNumber){
-
-    }
+    public static void setBirthdayEvent(String phoneNumber){}
 }
