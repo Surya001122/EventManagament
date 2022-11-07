@@ -8,7 +8,7 @@ public class Notifier implements Notify{
         timer = new Timer();
         timer.schedule(new Reminder(),seconds* 1000L);
     }
-    public class Reminder extends TimerTask{
+    private class Reminder extends TimerTask{
         @Override
         public void run() {
             displayMessageForEvent();
