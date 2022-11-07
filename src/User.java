@@ -27,7 +27,5 @@ public class User {
     public void removeMyContacts(){}
     public void viewMyContacts(){}
     public void removeAccount(){}
-    public void addMyHolidays(){}
-    public void removeMyHolidays(){}
     public void viewMyHolidays(){}
 }
