@@ -5,7 +5,8 @@ import java.util.HashMap;
 public class MyCalendar {
     private ArrayList<Task> myTasks;
     private ArrayList<Event> myEvents;
-    private ArrayList<Holiday> myHolidays;
+    private ArrayList<SpecialEvent> myHolidays;
+    private ArrayList<SpecialEvent> BirthDays;
     private HashMap<String,String> myContacts;
 //    private HashMap<String,String> myThemes;
 
