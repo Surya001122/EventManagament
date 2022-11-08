@@ -26,6 +26,8 @@ public class MyCalendar {
     public void removeMyContacts(){}
     public void viewMyContacts(){}
     public void viewMyHolidays(){}
+    public void viewAvailableThemes(){}
+    public void setThemes(){}
     public long findDifferenceInDates(){return 1;}
 
 }
