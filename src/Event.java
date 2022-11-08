@@ -16,7 +16,7 @@ public class Event {
     private String eventDescription;
     private HashMap<String,Status> AttendeesName;
     private Status eventStatus;
-    private Alarm alarm;
+    private Notify eventAlarm;
 
     public void addAttender(){}
     public void deleteAttender(){}

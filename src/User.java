@@ -10,6 +10,8 @@ public class User {
     private String userPhoneNumber;
     private String dateOfBirth;
     private MyCalendar myCalendar;
+
+
     public void updatePersonalInformation(){}
     public void changeMyPassword(){}
     public void createEvent(){}
@@ -26,6 +28,8 @@ public class User {
     public void addMyContacts(){}
     public void removeMyContacts(){}
     public void viewMyContacts(){}
+    public void viewBirthDays(){}
+
     public void removeAccount(){}
     public void viewMyHolidays(){}
     public void viewAvailableThemes(){}

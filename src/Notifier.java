@@ -26,4 +26,14 @@ public class Notifier implements Notify{
 
     }
 
+    @Override
+    public void displayMessageForTask() {
+        System.out.println("\nYour event started");
+    }
+
+
+    @Override
+    public void playRingtoneForTask() {
+
+    }
 }

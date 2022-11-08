@@ -9,4 +9,9 @@ public class Alarm extends Notifier{
     public void playRingtoneForEvent() {
 
     }
+
+    @Override
+    public void playRingtoneForTask() {
+
+    }
 }
