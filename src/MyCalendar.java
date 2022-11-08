@@ -7,7 +7,7 @@ public class MyCalendar {
     private ArrayList<Event> myEvents;
     private ArrayList<Holiday> myHolidays;
     private HashMap<String,String> myContacts;
-    private HashMap<String,String> myThemes;
+//    private HashMap<String,String> myThemes;
 
     public void addEvents(){} // used to create an event
     public void cancelEvents(){} // used to delete an event
