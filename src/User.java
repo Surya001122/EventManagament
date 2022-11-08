@@ -24,14 +24,12 @@ public class User {
     public void viewEvents(){}
     public void viewMyCalendar(){}
     public void viewAttendees() {}
-
-    public void addMyContacts(){}
-    public void removeMyContacts(){}
-    public void viewMyContacts(){}
-    public void viewBirthDays(){}
-
     public void removeAccount(){}
+    public void addBirthDays(){}
+    public void viewBirthDays(){}
     public void viewMyHolidays(){}
-    public void viewAvailableThemes(){}
-    public void setThemes(){}
+
+
+//    public void viewAvailableThemes(){}
+//    public void setThemes(){}
 }

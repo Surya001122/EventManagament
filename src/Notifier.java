@@ -36,4 +36,11 @@ public class Notifier implements Notify{
     public void playRingtoneForTask() {
 
     }
+    public void displayMessageForHoliday(){
+
+    }
+    @Override
+    public void playRingtoneForHoliday(){
+
+    }
 }

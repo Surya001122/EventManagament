@@ -6,4 +6,7 @@ public interface Notify {
     void displayMessageForTask();
 
     void playRingtoneForTask();
+    void displayMessageForHoliday();
+
+    void playRingtoneForHoliday();
 }

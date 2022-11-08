@@ -14,4 +14,8 @@ public class Alarm extends Notifier{
     public void playRingtoneForTask() {
 
     }
+    @Override
+    public void playRingtoneForHoliday(){
+
+    }
 }

@@ -1,4 +1,6 @@
 public enum Type {
     ONLINE,
-    OFFLINE
+    OFFLINE,
+    PUBLIC,
+    RELIGIOUS
 }

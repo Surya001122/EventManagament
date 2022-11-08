@@ -9,6 +9,11 @@ public class Task {
     private String taskTitle;
     private String taskDetails;
     private Status taskStatus;
+    private String taskStartDate;
+    private String taskEndDate;
+    private String taskStartTime;
+    private String taskEndTime;
     private String deadLine; // total days available to complete the task
     private Notify taskAlarm;
+    private String taskTheme;
 }
