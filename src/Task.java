@@ -13,7 +13,6 @@ public class Task {
     private String taskEndDate;
     private String taskStartTime;
     private String taskEndTime;
-    private String deadLine; // total days available to complete the task
     private Notify taskAlarm;
     private String taskTheme;
 }
