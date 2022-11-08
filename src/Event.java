@@ -10,6 +10,8 @@ public class Event {
     private int eventId;
     private String eventTitle;
     private Type eventType;
+    private String evenStartDate;
+    private String eventEndDate;
     private String eventStartTime;
     private String eventEndTime;
     private String eventLocation;
