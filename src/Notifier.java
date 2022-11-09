@@ -27,20 +27,13 @@ public class Notifier implements Notify{
     }
 
     @Override
-    public void displayMessageForTask() {
+    public void displayMessageForBirthDays() {
         System.out.println("\nYour event started");
     }
 
 
     @Override
-    public void playRingtoneForTask() {
-
-    }
-    public void displayMessageForHoliday(){
-
-    }
-    @Override
-    public void playRingtoneForHoliday(){
+    public void playRingtoneForBirthDays() {
 
     }
 }

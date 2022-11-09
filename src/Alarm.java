@@ -11,11 +11,7 @@ public class Alarm extends Notifier{
     }
 
     @Override
-    public void playRingtoneForTask() {
-
-    }
-    @Override
-    public void playRingtoneForHoliday(){
+    public void playRingtoneForBirthDays() {
 
     }
 }

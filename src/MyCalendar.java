@@ -5,9 +5,7 @@ import java.util.HashMap;
 public class MyCalendar {
     private ArrayList<Task> myTasks;
     private ArrayList<Event> myEvents;
-    private ArrayList<SpecialEvent> myHolidays;
-    private ArrayList<SpecialEvent> BirthDays;
-    private HashMap<String,String> myContacts;
+
 //    private HashMap<String,String> myThemes;
 
     public void addEvents(){} // used to create an event
@@ -25,10 +23,18 @@ public class MyCalendar {
     public Task  getTask(){return new Task();}
     public void displayEvent(){}
     public void displayTask(){}
-    public void addBirthDays(){}
-    public void viewMyHolidays(){}
-    public void viewBirthDays(){}
+    public void addBirthDays() {}
+    public void removeBirthDays() {}
+    public void modifyBirthDays() {}
     public long findDifferenceInDates(){return 1;}
+
+
+
+
+
+
+
+
     //    public void viewAvailableThemes(){}
     //    public void setThemes(){}
 
