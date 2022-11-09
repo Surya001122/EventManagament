@@ -7,4 +7,6 @@ public interface Notify {
 
     void playRingtoneForBirthDays();
 
+    void displayMessageForHolidays();
+    void playRingtoneForHolidays();
 }

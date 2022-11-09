@@ -16,24 +16,15 @@ public class Notifier implements Notify{
 
     }
     @Override
-    public void displayMessageForEvent() {
-        System.out.println("\nYour event started");
-    }
-
-
+    public void displayMessageForEvent() {}
     @Override
-    public void playRingtoneForEvent() {
-
-    }
-
+    public void playRingtoneForEvent() {}
     @Override
-    public void displayMessageForBirthDays() {
-        System.out.println("\nYour event started");
-    }
-
-
+    public void displayMessageForBirthDays() {}
     @Override
-    public void playRingtoneForBirthDays() {
-
-    }
+    public void playRingtoneForBirthDays() {}
+    @Override
+    public void displayMessageForHolidays(){}
+    @Override
+    public void playRingtoneForHolidays(){}
 }

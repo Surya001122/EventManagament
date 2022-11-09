@@ -6,12 +6,10 @@ public class Alarm extends Notifier{
         super(seconds);
     }
     @Override
-    public void playRingtoneForEvent() {
-
-    }
-
+    public void playRingtoneForEvent() {}
     @Override
-    public void playRingtoneForBirthDays() {
+    public void playRingtoneForBirthDays() {}
+    @Override
+    public void playRingtoneForHolidays(){}
 
-    }
 }

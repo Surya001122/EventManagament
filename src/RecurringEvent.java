@@ -4,13 +4,18 @@ public class RecurringEvent {
         private int holidayId;
         private String holidayTitle;
         private String holidayDescription;
+        private Type holidayType;
         private String dateOfHoliday;
+        private Notify holidayAlarm;
     }
     class BirthDays{
         private int birthDayId;
         private String friendName;
         private String friendPhoneNumber;
         private String dateOfBirth;
+        private Gender gender;
+        private String friendWorkType;
+        private String friendLocation;
         private Notify birthDayAlarm;
     }
 }

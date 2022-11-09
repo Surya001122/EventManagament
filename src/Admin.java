@@ -19,10 +19,7 @@ public class Admin {
     public void viewUsers(){}
     public User getUser(){return new User();}
     public void viewCalendars(){}
-
     public void addPublicHolidays(){} // admin can add holidays manually before creating the calendar instance for each user.
-    public static void setBirthdayEvent(String phoneNumber){}
-
 
 
 //    public void addThemes(){}
