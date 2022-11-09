@@ -6,5 +6,10 @@ public class Holiday{
     private Type holidayType;
     private String dateOfHoliday;
     private Status holidayStatus;
+    private String holidayTheme;
     private Notify holidayAlarm;
+
+    void getTotalHolidays(){
+
+    }
 }

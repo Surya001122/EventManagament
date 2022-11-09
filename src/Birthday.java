@@ -7,6 +7,9 @@ public class Birthday{
     private Gender gender;
     private String friendWorkType;
     private String friendLocation;
+    private String birthDayTheme;
     private Status birthDayStatus;
     private Notify birthDayAlarm;
+
+    void getTotalBirthDaysInCalendar(){}
 }

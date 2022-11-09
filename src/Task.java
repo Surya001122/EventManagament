@@ -9,9 +9,15 @@ public class Task {
     private String taskTitle;
     private String taskDetails;
     private Status taskStatus;
-    private String taskStartDate;
-    private String taskEndDate;
+    private String taskAssignedDate;
     private String taskStartTime;
     private String taskEndTime;
     private String taskTheme;
+
+    public void getTotalTasks(){
+
+    }
+    public void getTotalTimeTakenToComplete(){
+
+    }
 }
