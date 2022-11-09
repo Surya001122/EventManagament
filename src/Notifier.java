@@ -11,9 +11,13 @@ public class Notifier implements Notify{
     private class Reminder extends TimerTask{
         @Override
         public void run() {
-            timer.cancel();
         }
+    }
+    private class RecurringReminder extends TimerTask{
+        @Override
+        public void run() {
 
+        }
     }
     @Override
     public void displayMessageForEvent() {}
