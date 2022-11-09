@@ -3,7 +3,7 @@ public class Holiday{
     private int holidayId;
     private String holidayTitle;
     private String holidayDescription;
-    private Type holidayType;
+    private HolidayType holidayType;
     private String dateOfHoliday;
     private Status holidayStatus;
     private String holidayTheme;

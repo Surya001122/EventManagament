@@ -19,10 +19,8 @@ public class Admin {
     public void viewUsers(){}
     public User getUser(){return new User();}
     public void viewCalendars(){}
-    public void addPublicHolidays(){} // admin can add holidays manually before creating the calendar instance for each user.
-
-
-//    public void addThemes(){}
-//    public void removeThemes(){}
-//    public void viewThemes(){}
+    public void addPublicHolidays(){}
+    public void addThemes(){}
+    public void removeThemes(){}
+    public void viewThemes(){}
 }
