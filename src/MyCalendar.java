@@ -8,27 +8,25 @@ public class MyCalendar {
     private ArrayList<Birthday> birthDays;
     private ArrayList<Holiday> holidays;
     private HashMap<String,String> myThemes;
-
+    public void viewMyCalendar(String Date){} // 1 day view of calendar events, calendar tasks, calendar holidays, calendar birthdays.
+    public void viewMyCalendar(String fromDate,String toDate){} // weekly view or monthly view of calendar events, calendar tasks, calendar holidays, calendar birthdays.
     public void addEvents(){} // used to create an event
     public void cancelEvents(){} // used to delete an event
     public void updateEvents(){} // use to update an event
-    public void viewEvents(int day,int month,int year){}
-    public void viewEvents(int day,int month){}
-    public void viewEvents(int day){}
     public void addTasks(){} // used to create a task
     public void deleteTasks(){} // used to delete a task
     public void updateTasks(){} // use to update a task
-    public void viewAllTasks(){}
-    public void viewAllEvents(){}
+    public void addBirthDays() {}
+    public void removeBirthDays() {}
+    public void modifyBirthDays() {}
+    public void viewTasks(){}
+    public void viewAEvents(){}
+    public void viewBirthdays(){}
+    public void viewHolidays(){}
     public Event getEvent(){return new Event();}
     public Task  getTask(){return new Task();}
     public Holiday getHoliday(){return new Holiday();}
     public Birthday getBirthDay(){return new Birthday();}
-    public void displayEvent(){}
-    public void displayTask(){}
-    public void addBirthDays() {}
-    public void removeBirthDays() {}
-    public void modifyBirthDays() {}
     public long findDifferenceInDates(){return 1;}
     public void viewAvailableThemes(){}
     public void setThemes(){}

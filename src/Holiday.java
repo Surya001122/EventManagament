@@ -8,8 +8,4 @@ public class Holiday{
     private Status holidayStatus;
     private String holidayTheme;
     private Notify holidayAlarm;
-
-    void getTotalHolidays(){
-
-    }
 }

@@ -28,8 +28,6 @@ public class User {
     public void addBirthDays(){}
     public void viewBirthDays(){}
     public void viewMyHolidays(){}
-
-
-//    public void viewAvailableThemes(){}
-//    public void setThemes(){}
+    public void viewAvailableThemes(){}
+    public void setThemes(){}
 }

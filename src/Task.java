@@ -13,11 +13,4 @@ public class Task {
     private String taskStartTime;
     private String taskEndTime;
     private String taskTheme;
-
-    public void getTotalTasks(){
-
-    }
-    public void getTotalTimeTakenToComplete(){
-
-    }
 }

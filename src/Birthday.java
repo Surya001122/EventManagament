@@ -10,6 +10,4 @@ public class Birthday{
     private String birthDayTheme;
     private Status birthDayStatus;
     private Notify birthDayAlarm;
-
-    void getTotalBirthDaysInCalendar(){}
 }
