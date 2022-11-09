@@ -13,4 +13,5 @@ public class Task {
     private String taskStartTime;
     private String taskEndTime;
     private String taskTheme;
+    private Notify taskAlarm;
 }

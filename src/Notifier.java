@@ -11,6 +11,7 @@ public class Notifier implements Notify{
     private class Reminder extends TimerTask{
         @Override
         public void run() {
+
         }
     }
     private class RecurringReminder extends TimerTask{
@@ -31,4 +32,8 @@ public class Notifier implements Notify{
     public void displayMessageForHolidays(){}
     @Override
     public void playRingtoneForHolidays(){}
+    @Override
+    public void displayMessageForTask(){}
+    @Override
+    public void playRingtoneForTask(){}
 }
