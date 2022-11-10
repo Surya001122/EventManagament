@@ -11,7 +11,6 @@ public class User {
     private String dateOfBirth;
     private MyCalendar myCalendar;
 
-
     public void updatePersonalInformation(){}
     public void changeMyPassword(){}
     public void createEvent(){}
@@ -24,9 +23,9 @@ public class User {
     public void viewEvents(){}
     public void viewMyCalendar(){}
     public void viewAttendees() {}
-    public void removeAccount(){}
-    public void addBirthDays(){}
-    public void viewBirthDays(){}
+    public void addBirthdays(){}
+    public void removeBirthdays(){}
+    public void viewBirthdays(){}
     public void viewMyHolidays(){}
     public void viewAvailableThemes(){}
     public void setThemes(){}

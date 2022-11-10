@@ -24,5 +24,4 @@ public class Event {
     public void addAttender(){}
     public void deleteAttender(){}
     public void editAttender(){}
-    public int getTotalAttendees(){return 1;}
 }
