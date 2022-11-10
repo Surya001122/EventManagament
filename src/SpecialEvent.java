@@ -6,4 +6,7 @@ public abstract class SpecialEvent {
     private String endDateOfSpecialEvent;
     private String specialEventTheme;
     private Status specialEventStatus;
+
+
+
 }
