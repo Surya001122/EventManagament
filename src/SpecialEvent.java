@@ -1,4 +1,4 @@
-public class SpecialEvent {
+public abstract class SpecialEvent {
     private static int sId = 1;
     private String specialEventTitle;
     private String specialEventDescription;
