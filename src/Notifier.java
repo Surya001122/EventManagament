@@ -21,9 +21,9 @@ public class Notifier implements Notify{
     @Override
     public void playRingtoneForEvent() {}
     @Override
-    public void displayMessageForBirthDays() {}
+    public void displayMessageForBirthdays() {}
     @Override
-    public void playRingtoneForBirthDays() {}
+    public void playRingtoneForBirthdays() {}
     @Override
     public void displayMessageForHolidays(){}
     @Override

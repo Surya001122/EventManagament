@@ -8,7 +8,7 @@ public class Alarm extends Notifier{
     @Override
     public void playRingtoneForEvent() {}
     @Override
-    public void playRingtoneForBirthDays() {}
+    public void playRingtoneForBirthdays() {}
     @Override
     public void playRingtoneForHolidays(){}
     @Override
