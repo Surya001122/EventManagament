@@ -14,4 +14,6 @@ public class Task {
     private String taskEndTime;
     private String taskTheme;
     private Notify taskAlarm;
+
+    public void completeTask(){}
 }
