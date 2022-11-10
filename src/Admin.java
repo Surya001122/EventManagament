@@ -8,7 +8,6 @@ public class Admin {
     Scanner sc;
     private String adminId;
     private String adminName;
-    private Gender gender;
     private String adminPassword;
     private String adminLocation;
     private String adminPhoneNumber;
