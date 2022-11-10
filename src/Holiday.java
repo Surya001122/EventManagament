@@ -1,11 +1,5 @@
-public class Holiday{
-    static int hId = 1;
+public class Holiday extends SpecialEvent{
     private int holidayId;
-    private String holidayTitle;
-    private String holidayDescription;
     private HolidayType holidayType;
-    private String dateOfHoliday;
-    private Status holidayStatus;
-    private String holidayTheme;
     private Notify holidayAlarm; // recurring notifier
 }

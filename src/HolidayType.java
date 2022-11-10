@@ -1,4 +1,4 @@
 public enum HolidayType {
     PUBLIC,
-    RELIGIOUS,
+    RELIGIOUS
 }

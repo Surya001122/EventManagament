@@ -1,13 +1,9 @@
-public class Birthday{
-    static int bId = 1;
+public class Birthday extends SpecialEvent{
     private int birthDayId;
-    private String friendName;
-    private String friendPhoneNumber;
-    private String dateOfBirth;
+    private String contactName;
+    private String PhoneNumber;
     private Gender gender;
-    private String friendWorkType;
-    private String friendLocation;
-    private String birthDayTheme;
-    private Status birthDayStatus;
+    private String WorkType;
+    private String Location;
     private Notify birthDayAlarm; // recurring notifier
 }
