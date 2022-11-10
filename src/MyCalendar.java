@@ -21,6 +21,8 @@ public class MyCalendar {
     public void addBirthdays() {}
     public void removeBirthdays() {}
     public void modifyBirthdays() {}
+    public void addHolidays(){}
+    public void removeHolidays(){}
     public void viewTasks(){}
     public void viewEvents(){}
     public void viewBirthdays(){}

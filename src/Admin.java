@@ -20,6 +20,7 @@ public class Admin {
     public User getUser(){return new User();}
     public void viewCalendars(){}
     public void addHolidays(){}
+    public void removeHolidays(){}
     public void addThemes(){}
     public void removeThemes(){}
     public void viewThemes(){}

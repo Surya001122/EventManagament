@@ -26,6 +26,8 @@ public class User {
     public void addBirthdays(){}
     public void removeBirthdays(){}
     public void viewBirthdays(){}
+    public void addHolidays(){}
+    public void removeHolidays(){}
     public void viewMyHolidays(){}
     public void viewAvailableThemes(){}
     public void setThemes(){}
