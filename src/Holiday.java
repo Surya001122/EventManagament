@@ -1,4 +1,4 @@
-public class Holiday extends SpecialEvent{
+public class Holiday extends RecurringEvent{
     private int holidayId;
     private HolidayType holidayType;
     private Notify holidayAlarm; // recurring notifier

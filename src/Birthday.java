@@ -1,4 +1,4 @@
-public class Birthday extends SpecialEvent{
+public class Birthday extends RecurringEvent{
     private int birthDayId;
     private String contactName;
     private String PhoneNumber;
