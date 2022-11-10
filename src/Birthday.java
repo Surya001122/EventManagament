@@ -9,5 +9,5 @@ public class Birthday{
     private String friendLocation;
     private String birthDayTheme;
     private Status birthDayStatus;
-    private Notify birthDayAlarm;
+    private Notify birthDayAlarm; // recurring notifier
 }

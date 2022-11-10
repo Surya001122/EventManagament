@@ -7,5 +7,5 @@ public class Holiday{
     private String dateOfHoliday;
     private Status holidayStatus;
     private String holidayTheme;
-    private Notify holidayAlarm;
+    private Notify holidayAlarm; // recurring notifier
 }
