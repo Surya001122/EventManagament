@@ -7,7 +7,7 @@ import java.util.logging.Handler;
 
 public abstract class Event {
     private static int Id;
-    private static int eventId;
+    private int eventId;
     private String eventTitle;
     private String eventDescription;
     private String evenStartDate;
