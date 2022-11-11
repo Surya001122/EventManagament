@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.logging.Handler;
 
 public abstract class Event {
+    private static int Id;
     private static int eventId;
     private String eventTitle;
     private String eventDescription;
