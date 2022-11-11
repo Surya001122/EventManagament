@@ -3,8 +3,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Task {
-    private static int tId = 1;
+public class Task extends NonRecurringEvent{
     private int taskId;
 
     public void completeTask(){} // used to change the status;

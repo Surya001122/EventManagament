@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class SpecialEvent {
+public class SpecialEvent extends NonRecurringEvent{
     private int eventId;
     private ArrayList<String> Attendees;
     private String eventLocation;
