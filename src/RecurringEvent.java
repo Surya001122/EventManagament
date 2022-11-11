@@ -3,5 +3,6 @@ public class RecurringEvent extends Event{
     private int delay;
     private int period;
 
-    public void createRecurringReminder(){}
+    @Override
+    public void createReminder(){}
 }

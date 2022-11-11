@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.logging.Handler;
 
-public class Event {
+public abstract class Event {
     private static int eventId;
     private String eventTitle;
     private String eventDescription;
@@ -13,5 +13,5 @@ public class Event {
     private String eventEndDate;
     private Status eventStatus;
     private String eventTheme;
-
+    abstract void createReminder();
 }
