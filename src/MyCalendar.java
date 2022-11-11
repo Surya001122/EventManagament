@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class MyCalendar {
     private ArrayList<Task> myTasks;
-    private ArrayList<Event> myEvents;
+    private ArrayList<SpecialEvent> myEvents;
     private ArrayList<Birthday> birthDays;
     private ArrayList<Holiday> holidays;
     private HashMap<String,String> myThemes;
