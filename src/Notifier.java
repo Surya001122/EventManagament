@@ -8,6 +8,10 @@ public class Notifier implements Notify{
         timer = new Timer();
         timer.schedule(new Reminder(),seconds* 1000L);
     }
+    Notifier(int second1,int second2){
+        timer = new Timer();
+        timer.schedule(new RecurringReminder(),second1*2000L,second2*1000L);
+    }
     private class Reminder extends TimerTask{
         @Override
         public void run() {}

@@ -1,9 +1,8 @@
 public class Birthday extends RecurringEvent{
-    private int birthDayId;
+    private int birthdayId;
     private String contactName;
-    private String PhoneNumber;
+    private String phoneNumber;
     private Gender gender;
-    private String WorkType;
-    private String Location;
-    private Notify birthDayAlarm; // recurring notifier
+    private String jobTitle;
+    private String location;
 }
