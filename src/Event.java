@@ -11,8 +11,6 @@ public class Event {
     private String eventDescription;
     private String evenStartDate;
     private String eventEndDate;
-    private String eventStartTime;
-    private String eventEndTime;
     private Status eventStatus;
     private String eventTheme;
 
