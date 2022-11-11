@@ -1,6 +1,6 @@
 public enum Status {
-    INCOMPLETE,
     COMPLETE,
+    INCOMPLETE,
     PRESENT,
     ABSENT
 }
