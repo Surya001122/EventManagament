@@ -10,15 +10,16 @@ public abstract class Event {
     private int eventId;
     private String eventTitle;
     private String eventDescription;
-    private String evenStartDate;
+    private String eventStartDate;
     private String eventEndDate;
     private Status eventStatus;
     private String eventTheme;
 
     public Event(String eventTitle, String eventDescription, String evenStartDate, String eventEndDate) {
+        this.eventId = Id++;
         this.eventTitle = eventTitle;
         this.eventDescription = eventDescription;
-        this.evenStartDate = evenStartDate;
+        this.eventStartDate = evenStartDate;
         this.eventEndDate = eventEndDate;
     }
 
@@ -46,12 +47,12 @@ public abstract class Event {
         this.eventDescription = eventDescription;
     }
 
-    public String getEvenStartDate() {
-        return evenStartDate;
+    public String getEventStartDate() {
+        return eventStartDate;
     }
 
-    public void setEvenStartDate(String evenStartDate) {
-        this.evenStartDate = evenStartDate;
+    public void setEventStartDate(String evenStartDate) {
+        this.eventStartDate = evenStartDate;
     }
 
     public String getEventEndDate() {
@@ -78,5 +79,5 @@ public abstract class Event {
         this.eventTheme = eventTheme;
     }
 
-    abstract void createReminder();
+    abstract void createReminder(long seconds);
 }

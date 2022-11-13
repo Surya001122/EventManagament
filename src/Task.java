@@ -4,8 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Task extends NonRecurringEvent{
-    public Task(String eventTitle, String eventDescription, String evenStartDate, String eventEndDate, String nonRecurringEventStartTime, String nonRecurringEventEndTime) {
-        super(eventTitle, eventDescription, evenStartDate, eventEndDate, nonRecurringEventStartTime, nonRecurringEventEndTime);
+    public Task(String taskTitle, String taskDescription, String taskStartDate, String taskEndDate, String nonRecurringtaskStartTime, String nonRecurringtaskEndTime) {
+        super(taskTitle, taskDescription, taskStartDate, taskEndDate, nonRecurringtaskStartTime, nonRecurringtaskEndTime);
     }
 
     public void completeTask(){} // used to change the status;

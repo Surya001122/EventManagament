@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.Scanner;
 
 public class Main {
@@ -28,7 +29,7 @@ public class Main {
                     while(userRun)
                     {
                         User user = admin.getUser(userId);
-                        System.out.print("\nEnter 1 to create event\nEnter 2 to cancel event\nEnter 3 to update event\nEnter 4 to create task\nEnter 5 to cancel task\nEnter 6 to update task\nEnter 7 to view Events\nEnter 8 to view Tasks\nEnter 9 to view Attendees\nEnter 10 to view My calendar\nEnter 11 to update personal information\nEnter 12 to change my password\nEnter 13 to exit\n\n\nEnter your choice : ");
+                        System.out.print("\nEnter 1 to create event\nEnter 2 to cancel event\nEnter 3 to update event\nEnter 4 to create task\nEnter 5 to cancel task\nEnter 6 to update task\nEnter 7 to create birthdays\nEnter 8 to cancel birthdays\nEnter 9 to update birthdays\nEnter 10 to create holiday\nEnter 11 to cancel holidays\nEnter 12 to set themes\nEnter 13 to view events\nEnter 14 to view tasks\nEnter 15 to view birthdays\nEnter 16 to view holidays\nEnter 17 to view available themes\nEnter 18 to view my calendar\nEnter 19 to update personal information\nEnter 20 to change my password\nEnter 21 to exit\n\n\nEnter your choice : ");
                         int userChoice = 0;
                         try {
                             userChoice = Integer.parseInt(sc.nextLine().trim());
@@ -89,7 +90,17 @@ public class Main {
                                 user.viewAvailableThemes();
                                 break;
                             case 18:
+                                user.viewMyCalendar();
+                                break;
+                            case 19:
+                                user.updatePersonalInformation();
+                                break;
+                            case 20:
+                                user.changeMyPassword();
+                                break;
+                            case 21:
                                 userRun = false;
+                                System.out.println("\nExit");
                                 break;
                             default:
                                 System.out.println("\nEnter valid option...");
@@ -99,11 +110,6 @@ public class Main {
                     }
                     break;
                 case 3:
-                    String adminId = signup.createLogin();
-                    boolean adminRun = adminId != null ? true : false;
-                    while (adminRun){
-
-                    }
                     break;
                 case 4:
                     start = false;

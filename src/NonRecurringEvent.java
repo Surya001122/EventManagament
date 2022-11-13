@@ -43,5 +43,7 @@ public class NonRecurringEvent extends Event{
     }
 
     @Override
-    public void createReminder(){}
+    public void createReminder(long seconds){
+        normalNotifier = new Notifier(seconds);
+    }
 }

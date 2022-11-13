@@ -102,9 +102,7 @@ public class Registration {
                 return false;
             }
         }
-
     }
-
     public String createLogin()
     {
         int choice;
@@ -159,7 +157,7 @@ public class Registration {
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
-    public boolean validatePhoneNumber(String phoneNumber){
+    public static boolean validatePhoneNumber(String phoneNumber){
         Pattern pattern = Pattern.compile("^[0-9].{7,15}$");
         Matcher matcher = pattern.matcher(phoneNumber);
         return matcher.matches();

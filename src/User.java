@@ -97,22 +97,60 @@ public class User {
 
     public void updatePersonalInformation(){}
     public void changeMyPassword(){}
-    public void createEvent(){}
-    public void cancelEvent(){}
-    public void updateEvent(){}
-    public void createTask(){}
-    public void cancelTask(){}
-    public void updateTask(){}
-    public void viewTasks(){}
-    public void viewEvents(){}
-    public void viewMyCalendar(){}
-    public void addBirthdays(){}
-    public void removeBirthdays(){}
-    public void modifyBirthdays(){}
-    public void viewBirthdays(){}
-    public void addHolidays(){}
-    public void removeHolidays(){}
-    public void viewMyHolidays(){}
-    public void viewAvailableThemes(){}
-    public void setThemes(){}
+    public void createEvent(){
+        myCalendar.addSpecialEvents();
+    }
+    public void cancelEvent(){
+        myCalendar.cancelSpecialEvents();
+    }
+    public void updateEvent(){
+        myCalendar.updateSpecialEvents();
+    }
+    public void createTask(){
+        myCalendar.addTasks();
+    }
+    public void cancelTask(){
+        myCalendar.deleteTasks();
+    }
+    public void updateTask(){
+        myCalendar.updateTasks();
+    }
+    public void viewTasks(){
+        myCalendar.viewTasks();
+    }
+    public void viewEvents(){
+        myCalendar.viewEvents();
+    }
+    public void viewMyCalendar(){
+        myCalendar.viewMyCalendar();
+        myCalendar.viewMyCalendar("1");
+        myCalendar.viewMyCalendar("1","2");
+    }
+    public void addBirthdays(){
+        myCalendar.addBirthdays();
+    }
+    public void removeBirthdays(){
+        myCalendar.removeBirthdays();
+    }
+    public void modifyBirthdays(){
+        myCalendar.modifyBirthdays();
+    }
+    public void viewBirthdays(){
+        myCalendar.viewBirthdays();
+    }
+    public void addHolidays(){
+        myCalendar.addHolidays();
+    }
+    public void removeHolidays(){
+        myCalendar.removeHolidays();
+    }
+    public void viewMyHolidays(){
+        myCalendar.viewHolidays();
+    }
+    public void viewAvailableThemes(){
+        myCalendar.viewAvailableThemes();
+    }
+    public void setThemes(){
+        myCalendar.setThemes();
+    }
 }
