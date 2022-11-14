@@ -2,6 +2,7 @@ import java.awt.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 import java.util.*;
 
@@ -60,9 +61,293 @@ public class MyCalendar {
         this.myThemes = myThemes;
     }
 
-    public void viewMyCalendar(){} // default method to print that month in calendar
-    public void viewMyCalendar(String Date){} // 1 day view of calendar events, calendar tasks, calendar holidays, calendar birthdays.
-    public void viewMyCalendar(String fromDate,String toDate){} // weekly view or monthly view of calendar events, calendar tasks, calendar holidays, calendar birthdays.
+    public void viewMyCalendar(){
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        GregorianCalendar calendar = new GregorianCalendar(year,month, 1);
+        int startingDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // S M T W T F S 1 2 3 4 5 6 7
+        int totalDaysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 28,29,30,31
+        System.out.println(new SimpleDateFormat("MMMM YYYY").format(calendar.getTime()));
+        System.out.println(" S  M  T  W  T  F  S");
+        for (int i = 0; i < startingDayOfWeek - 1; i++) {
+            System.out.print("   ");
+        }
+        for (int i = 0, day = 1; day <= totalDaysInMonth; i++)  {
+            for (int j = ((i == 0) ? startingDayOfWeek - 1 : 0); j < 7 && (day <= totalDaysInMonth); j++) {
+                System.out.printf("%2d ", day);
+                day++;
+            }
+            System.out.println();
+        }
+        System.out.print("\nEnter 1 to view Events\nEnter 2 to view tasks\nEnter 3 to view birthdays\nEnter 4 to view holidays\nEnter 5 to view all events\nEnter 6 to exit\nEnter your choice : ");
+        int viewChoice;
+        try{
+            viewChoice = Integer.parseInt(sc.nextLine().trim());
+        }
+        catch (NumberFormatException numberFormatException){
+            System.out.print("\nEnter valid choice..try again...");
+            return;
+        }
+        switch(viewChoice){
+            case 1:
+                for (int i = 0, day = 1; day <= totalDaysInMonth; i++)  {
+                    for (int j = ((i == 0) ? startingDayOfWeek - 1 : 0); j < 7 && (day <= totalDaysInMonth); j++) {
+                        boolean star = false;
+                        for(SpecialEvent event : myEvents){
+                            if(isEqual(day,month,year, event.getEventStartDate())){
+                                displayEvent(event);
+                                star = true;
+                            }
+                        }
+                        if(star)
+                        System.out.print("\n***************************************************************************");
+                        day++;
+                    }
+                }
+                break;
+            case 2:
+                for (int i = 0, day = 1; day <= totalDaysInMonth; i++)  {
+                    for (int j = ((i == 0) ? startingDayOfWeek - 1 : 0); j < 7 && (day <= totalDaysInMonth); j++) {
+                        boolean star = false;
+                        for(Task task : myTasks){
+                            if(isEqual(day,month,year, task.getEventStartDate())){
+                                displayTask(task);
+                                star = true;
+                            }
+                        }
+                        if(star)
+                        System.out.print("\n***************************************************************************");
+                        day++;
+                    }
+                }
+                break;
+            case 3:
+                for (int i = 0, day = 1; day <= totalDaysInMonth; i++)  {
+                    for (int j = ((i == 0) ? startingDayOfWeek - 1 : 0); j < 7 && (day <= totalDaysInMonth); j++) {
+                        boolean star = false;
+                        for(Birthday birthday : birthdays){
+                            if(isEqual(day,month,year, birthday.getEventStartDate())){
+                                displayBirthday(birthday);
+                                star = true;
+                            }
+                        }
+                        if(star)
+                        System.out.print("\n***************************************************************************");
+                        day++;
+                    }
+                }
+                break;
+            case 4:
+                for (int i = 0, day = 1; day <= totalDaysInMonth; i++)  {
+                    for (int j = ((i == 0) ? startingDayOfWeek - 1 : 0); j < 7 && (day <= totalDaysInMonth); j++) {
+                        boolean star = false;
+                        for(Holiday holiday : holidays){
+                            if(isEqual(day,month,year, holiday.getEventStartDate())){
+                                displayHoliday(holiday);
+                                star = true;
+                            }
+                        }
+                        if(star)
+                        System.out.print("\n***************************************************************************");
+                        day++;
+                    }
+                }
+                break;
+            case 5:
+                for (int i = 0, day = 1; day <= totalDaysInMonth; i++)  {
+                    for (int j = ((i == 0) ? startingDayOfWeek - 1 : 0); j < 7 && (day <= totalDaysInMonth); j++) {
+                        boolean star = false;
+                        for(SpecialEvent event : myEvents){
+                            if(isEqual(day,month,year, event.getEventStartDate())){
+                                displayEvent(event);
+                                star = true;
+                            }
+                        }
+                        if(star)
+                        System.out.print("\n***************************************************************************");
+                        for(Task task : myTasks){
+                            if(isEqual(day,month,year, task.getEventStartDate())){
+                                displayTask(task);
+                                star = true;
+                            }
+                        }
+                        if(star)
+                        System.out.print("\n***************************************************************************");
+                        for(Birthday birthday : birthdays){
+                            if(isEqual(day,month,year, birthday.getEventStartDate())){
+                                displayBirthday(birthday);
+                                star = true;
+                            }
+                        }
+                        if(star)
+                        System.out.print("\n***************************************************************************");
+                        for(Holiday holiday : holidays){
+                            if(isEqual(day,month,year, holiday.getEventStartDate())){
+                                displayHoliday(holiday);
+                                star = true;
+                            }
+                        }
+                        if(star)
+                        System.out.println("\n==========================================================================================================");
+                        day++;
+                    }
+                }
+                break;
+            case 6:
+                System.out.print("\nExit");
+                break;
+            default:
+                System.out.print("\nEnter valid choice..try again...");
+                break;
+        }
+    } // default method to print that month in calendar
+    public void viewMyCalendar(int fromMonth,int toMonth,int fromYear,int toYear){
+        boolean calendarRun = true;
+        while(calendarRun){
+            GregorianCalendar calendar = new GregorianCalendar(fromYear,fromMonth, 1);
+            int startingDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // S M T W T F S 1 2 3 4 5 6 7
+            int totalDaysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 28,29,30,31
+            System.out.println(new SimpleDateFormat("MMMM YYYY").format(calendar.getTime()));
+            System.out.println(" S  M  T  W  T  F  S");
+            for (int i = 0; i < startingDayOfWeek - 1; i++) {
+                System.out.print("   ");
+            }
+            for (int i = 0, day = 1; day <= totalDaysInMonth; i++)  {
+                for (int j = ((i == 0) ? startingDayOfWeek - 1 : 0); j < 7 && (day <= totalDaysInMonth); j++) {
+                    System.out.printf("%2d ", day);
+                    day++;
+                }
+                System.out.println();
+            }
+            System.out.print("\nEnter 1 to view Events\nEnter 2 to view tasks\nEnter 3 to view birthdays\nEnter 4 to view holidays\nEnter your choice : ");
+            int viewChoice;
+            try{
+                viewChoice = Integer.parseInt(sc.nextLine().trim());
+            }
+            catch (NumberFormatException numberFormatException){
+                System.out.print("\nEnter valid choice..try again...");
+                return;
+            }
+            switch(viewChoice){
+                case 1:
+                    for (int i = 0, day = 1; day <= totalDaysInMonth; i++)  {
+                        for (int j = ((i == 0) ? startingDayOfWeek - 1 : 0); j < 7 && (day <= totalDaysInMonth); j++) {
+                            boolean star = false;
+                            for(SpecialEvent event : myEvents){
+                                if(isEqual(day,fromMonth,fromYear, event.getEventStartDate())){
+                                    displayEvent(event);
+                                    star = true;
+                                }
+                            }
+                            if(star)
+                                System.out.print("\n***************************************************************************");
+                            day++;
+                        }
+                    }
+                    break;
+                case 2:
+                    for (int i = 0, day = 1; day <= totalDaysInMonth; i++)  {
+                        for (int j = ((i == 0) ? startingDayOfWeek - 1 : 0); j < 7 && (day <= totalDaysInMonth); j++) {
+                            boolean star = false;
+                            for(Task task : myTasks){
+                                if(isEqual(day,fromMonth,fromYear, task.getEventStartDate())){
+                                    displayTask(task);
+                                    star = true;
+                                }
+                            }
+                            if(star)
+                                System.out.print("\n***************************************************************************");
+                            day++;
+                        }
+                    }
+                    break;
+                case 3:
+                    for (int i = 0, day = 1; day <= totalDaysInMonth; i++)  {
+                        for (int j = ((i == 0) ? startingDayOfWeek - 1 : 0); j < 7 && (day <= totalDaysInMonth); j++) {
+                            boolean star = false;
+                            for(Birthday birthday : birthdays){
+                                if(isEqual(day,fromMonth,fromYear, birthday.getEventStartDate())){
+                                    displayBirthday(birthday);
+                                    star = true;
+                                }
+                            }
+                            if(star)
+                                System.out.print("\n***************************************************************************");
+                            day++;
+                        }
+                    }
+                    break;
+                case 4:
+                    for (int i = 0, day = 1; day <= totalDaysInMonth; i++)  {
+                        for (int j = ((i == 0) ? startingDayOfWeek - 1 : 0); j < 7 && (day <= totalDaysInMonth); j++) {
+                            boolean star = false;
+                            for(Holiday holiday : holidays){
+                                if(isEqual(day,fromMonth,fromYear, holiday.getEventStartDate())){
+                                    displayHoliday(holiday);
+                                    star = true;
+                                }
+                            }
+                            if(star)
+                                System.out.print("\n***************************************************************************");
+                            day++;
+                        }
+                    }
+                    break;
+                case 5:
+                    for (int i = 0, day = 1; day <= totalDaysInMonth; i++)  {
+                        for (int j = ((i == 0) ? startingDayOfWeek - 1 : 0); j < 7 && (day <= totalDaysInMonth); j++) {
+                            boolean star = false;
+                            for(SpecialEvent event : myEvents){
+                                if(isEqual(day,fromMonth,fromYear, event.getEventStartDate())){
+                                    displayEvent(event);
+                                    star = true;
+                                }
+                            }
+                            if(star)
+                                System.out.print("\n***************************************************************************");
+                            for(Task task : myTasks){
+                                if(isEqual(day,fromMonth,fromYear, task.getEventStartDate())){
+                                    displayTask(task);
+                                    star = true;
+                                }
+                            }
+                            if(star)
+                                System.out.print("\n***************************************************************************");
+                            for(Birthday birthday : birthdays){
+                                if(isEqual(day,fromMonth,fromYear, birthday.getEventStartDate())){
+                                    displayBirthday(birthday);
+                                    star = true;
+                                }
+                            }
+                            if(star)
+                                System.out.print("\n***************************************************************************");
+                            for(Holiday holiday : holidays){
+                                if(isEqual(day,fromMonth,fromYear, holiday.getEventStartDate())){
+                                    displayHoliday(holiday);
+                                    star = true;
+                                }
+                            }
+                            if(star)
+                                System.out.println("\n==========================================================================================================");
+                            day++;
+                        }
+                    }
+                    break;
+                default:
+                    System.out.print("\nEnter valid choice..try again...");
+                    break;
+            }
+            if(fromYear == toYear && fromMonth == toMonth){
+                calendarRun = false;
+            }
+            fromMonth++;
+            if(fromMonth>11){
+                fromMonth = 0;
+                fromYear++;
+            }
+        }
+    } // weekly view or monthly view of calendar events, calendar tasks, calendar holidays, calendar birthdays.
     public void addSpecialEvents(){
         System.out.print("\nEnter the event title : ");
         String eventTitle = sc.nextLine().trim();
@@ -454,13 +739,13 @@ public class MyCalendar {
         }while(!validateDate(dateOfBirth));
         String phoneNumber;
         do {
-            System.out.print("\nEnter your mobileNumber : ");
+            System.out.print("\nEnter mobileNumber : ");
             phoneNumber = sc.nextLine().trim();
         } while (!Registration.validatePhoneNumber(phoneNumber));
         Gender gender;
         String genderType;
         try {
-            System.out.print("\nEnter your gender (MALE,FEMALE,OTHERS): ");
+            System.out.print("\nEnter gender of the contact (MALE,FEMALE,OTHERS): ");
             genderType = sc.nextLine().trim();
             gender = Gender.valueOf(genderType);
         }
@@ -644,8 +929,6 @@ public class MyCalendar {
             }
         }
     }
-    public void addHolidays(){}
-    public void removeHolidays(){}
     public void viewTasks(){
         System.out.println("\nEnter 1 to view all tasks\nEnter 2 to view certain tasks \nEnter your choice : ");
         int viewChoice;
@@ -659,7 +942,7 @@ public class MyCalendar {
         switch(viewChoice){
             case 1:
                 for(Task task : myTasks){
-                    System.out.println("\nTask ID : "+task.getEventId()+"   Task title : "+task.getEventTitle()+"    Task description : "+task.getEventDescription()+"   Task start date : "+task.getEventStartDate()+"   Task end date : "+task.getEventEndDate()+"   Task start time : "+task.getNonRecurringEventStartTime()+"   Task end time : "+task.getNonRecurringEventEndTime());
+                    displayTask(task);
                 }
                 break;
             case 2:
@@ -681,7 +964,7 @@ public class MyCalendar {
                 for(Task task : myTasks){
                     if(task.getEventStartDate().equals(taskDate) && task.getEventEndDate().equals(taskDate) && task.getNonRecurringEventStartTime().equals(taskStartTime) && task.getNonRecurringEventEndTime().equals(taskEndTime))
                     {
-                        System.out.println("\nTask ID : "+task.getEventId()+"   Task title : "+task.getEventTitle()+"    Task description : "+task.getEventDescription()+"   Task start date : "+task.getEventStartDate()+"   Task end date : "+task.getEventEndDate()+"   Task start time : "+task.getNonRecurringEventStartTime()+"   Task end time : "+task.getNonRecurringEventEndTime());
+                        displayTask(task);
                     }
                 }
                 break;
@@ -706,7 +989,7 @@ public class MyCalendar {
         switch(viewChoice){
             case 1:
                 for(SpecialEvent event : myEvents){
-                    System.out.println("\nEvent ID : "+event.getEventId()+"   Event title : "+event.getEventTitle()+"    Event description : "+event.getEventDescription()+"   Event start date : "+event.getEventStartDate()+"   Event end date : "+event.getEventEndDate()+"   Event start time : "+event.getNonRecurringEventStartTime()+"   Event end time : "+event.getNonRecurringEventEndTime()+"   Event location & type : ("+event.getEventType()+") "+event.getEventLocation());
+                    displayEvent(event);
                 }
                 break;
             case 2:
@@ -733,7 +1016,7 @@ public class MyCalendar {
                 for(SpecialEvent event : myEvents){
                     if(event.getEventStartDate().equals(eventStartDate) && event.getEventEndDate().equals(eventEndDate) && event.getNonRecurringEventStartTime().equals(eventStartTime) && event.getNonRecurringEventEndTime().equals(eventEndTime))
                     {
-                        System.out.println("\nEvent ID : "+event.getEventId()+"   Event title : "+event.getEventTitle()+"    Event description : "+event.getEventDescription()+"   Event start date : "+event.getEventStartDate()+"   Event end date : "+event.getEventEndDate()+"   Event start time : "+event.getNonRecurringEventStartTime()+"   Event end time : "+event.getNonRecurringEventEndTime()+"   Event location & type : ("+event.getEventType()+") "+event.getEventLocation());
+                        displayEvent(event);
                     }
                 }
                 break;
@@ -758,7 +1041,7 @@ public class MyCalendar {
         switch(viewChoice){
             case 1:
                 for(Birthday birthday : birthdays){
-                    System.out.println("\nBirthday ID : "+birthday.getEventId()+"   Birthday title : "+birthday.getEventTitle()+"    Birthday description : "+birthday.getEventDescription()+"   DOB : "+birthday.getEventStartDate()+"    Name : "+birthday.getContactName()+"    MobileNumber : "+birthday.getPhoneNumber()+"   Gender : "+birthday.getGender()+"   Job : "+birthday.getJobTitle()+"    Location : "+birthday.getLocation());
+                    displayBirthday(birthday);
                 }
                 break;
             case 2:
@@ -770,8 +1053,9 @@ public class MyCalendar {
                 for(Birthday birthday : birthdays){
                     if(birthday.getEventStartDate().equals(DateOfBirth))
                     {
-                        System.out.println("\nBirthday ID : "+birthday.getEventId()+"   Birthday title : "+birthday.getEventTitle()+"    Birthday description : "+birthday.getEventDescription()+"   DOB : "+birthday.getEventStartDate()+"    Name : "+birthday.getContactName()+"    MobileNumber : "+birthday.getPhoneNumber()+"   Gender : "+birthday.getGender()+"   Job : "+birthday.getJobTitle()+"    Location : "+birthday.getLocation());
-                    }                }
+                        displayBirthday(birthday);
+                    }
+                }
                 break;
             case 3:
                 System.out.print("\nExit");
@@ -782,7 +1066,41 @@ public class MyCalendar {
         }
     }
     public void viewHolidays(){
-
+        System.out.println("\nEnter 1 to view all holidays\nEnter 2 to view certain holidays \nEnter your choice : ");
+        int viewChoice;
+        try{
+            viewChoice = Integer.parseInt(sc.nextLine().trim());
+        }
+        catch(NumberFormatException numberFormatException){
+            System.out.print("\nEnter the valid option..please try again...");
+            return;
+        }
+        switch(viewChoice){
+            case 1:
+                for(Holiday holiday : holidays){
+                    displayHoliday(holiday);
+                }
+                break;
+            case 2:
+                String date = "";
+                do{
+                    System.out.print("\nEnter valid date (dd/mm/yyyy): ");
+                    date = sc.nextLine().trim();
+                }while(!validateDate(date));
+                for(Holiday holiday : holidays){
+                    if(holiday.getEventStartDate().equals(date))
+                    {
+                        displayHoliday(holiday);
+                    }
+                }
+                break;
+            case 3:
+                System.out.print("\nExit");
+                break;
+            default:
+                System.out.print("\nEnter valid option..try again...");
+                break;
+        }
     }
     public SpecialEvent getSpecialEvent(int eventId){
         for(SpecialEvent event : myEvents){
@@ -847,7 +1165,27 @@ public class MyCalendar {
     public boolean validateTime(String Time){
         return true;
     }
-    public void viewAvailableThemes(){}
-    public void setThemes(){}
+    public void viewAvailableThemes(){
 
+    }
+    public void setThemes(){}
+    public boolean isEqual(int day, int month, int year, String date){
+        String dateParts[] =  date.split("/");
+        int dayPart = Integer.parseInt(dateParts[0]);
+        int monthPart = Integer.parseInt(dateParts[1]);
+        int yearPart = Integer.parseInt(dateParts[2]);
+        return (dayPart == day && monthPart-1 == month && yearPart == year);
+    }
+    public void displayEvent(SpecialEvent event){
+        System.out.println("\nEvent ID : "+event.getEventId()+"   Event title : "+event.getEventTitle()+"    Event description : "+event.getEventDescription()+"   Event start date : "+event.getEventStartDate()+"   Event end date : "+event.getEventEndDate()+"   Event start time : "+event.getNonRecurringEventStartTime()+"   Event end time : "+event.getNonRecurringEventEndTime()+"   Event location & type : ("+event.getEventType()+") "+event.getEventLocation());
+    }
+    public void displayTask(Task task){
+        System.out.println("\nTask ID : "+task.getEventId()+"   Task title : "+task.getEventTitle()+"    Task description : "+task.getEventDescription()+"   Task start date : "+task.getEventStartDate()+"   Task end date : "+task.getEventEndDate()+"   Task start time : "+task.getNonRecurringEventStartTime()+"   Task end time : "+task.getNonRecurringEventEndTime());
+    }
+    public void displayHoliday(Holiday holiday){
+        System.out.println("\nHoliday ID : "+holiday.getEventId()+"   Holiday title : "+holiday.getEventTitle()+"    Holiday description : "+holiday.getEventDescription()+"   Holiday date : "+holiday.getEventStartDate()+"   Type of holiday : "+holiday.getHolidayType());
+    }
+    public void displayBirthday(Birthday birthday){
+        System.out.println("\nBirthday ID : "+birthday.getEventId()+"   Birthday title : "+birthday.getEventTitle()+"    Birthday description : "+birthday.getEventDescription()+"   Date Of Birth : "+birthday.getEventStartDate()+"   Name : "+birthday.getContactName()+"    PhoneNumber : "+birthday.getPhoneNumber()+"    Gender : "+birthday.getGender()+"   Job : "+birthday.getJobTitle()+"    Location : "+birthday.getLocation());
+    }
 }

@@ -6,7 +6,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Registration signup = new Registration();
         Admin admin = new Admin("A1_Surya","Surya","Surya123!!!","Chennai","12345");
-        signup.addLoginInfo(admin.getAdminId(), admin.getAdminPassword());
+        User u = new User("Surya","U1_Surya",Gender.MALE,"Surya123!!!","Doctor","Chennai","1234567890","01/08/2002");
+        signup.addLoginInfo(u.getUserId(), u.getUserPassword());
+        admin.addUsers(u);
         boolean start = true;
         while(start)
         {
@@ -29,7 +31,7 @@ public class Main {
                     while(userRun)
                     {
                         User user = admin.getUser(userId);
-                        System.out.print("\nEnter 1 to create event\nEnter 2 to cancel event\nEnter 3 to update event\nEnter 4 to create task\nEnter 5 to cancel task\nEnter 6 to update task\nEnter 7 to create birthdays\nEnter 8 to cancel birthdays\nEnter 9 to update birthdays\nEnter 10 to create holiday\nEnter 11 to cancel holidays\nEnter 12 to set themes\nEnter 13 to view events\nEnter 14 to view tasks\nEnter 15 to view birthdays\nEnter 16 to view holidays\nEnter 17 to view available themes\nEnter 18 to view my calendar\nEnter 19 to update personal information\nEnter 20 to change my password\nEnter 21 to exit\n\n\nEnter your choice : ");
+                        System.out.print("\nEnter 1 to create event\nEnter 2 to cancel event\nEnter 3 to update event\nEnter 4 to create task\nEnter 5 to cancel task\nEnter 6 to update task\nEnter 7 to create birthdays\nEnter 8 to cancel birthdays\nEnter 9 to update birthdays\nEnter 10 to set themes\nEnter 11 to view events\nEnter 12 to view tasks\nEnter 13 to view birthdays\nEnter 14 to view holidays\nEnter 15 to view available themes\nEnter 16 to view my calendar\nEnter 17 to update personal information\nEnter 18 to change my password\nEnter 19 to exit\n\n\nEnter your choice : ");
                         int userChoice = 0;
                         try {
                             userChoice = Integer.parseInt(sc.nextLine().trim());
@@ -66,39 +68,33 @@ public class Main {
                                 user.modifyBirthdays();
                                 break;
                             case 10:
-                                user.addHolidays();
-                                break;
-                            case 11:
-                                user.removeHolidays();
-                                break;
-                            case 12:
                                 user.setThemes();
                                 break;
-                            case 13:
+                            case 11:
                                 user.viewEvents();
                                 break;
-                            case 14:
+                            case 12:
                                 user.viewTasks();
                                 break;
-                            case 15:
+                            case 13:
                                 user.viewBirthdays();
                                 break;
-                            case 16:
+                            case 14:
                                 user.viewMyHolidays();
                                 break;
-                            case 17:
+                            case 15:
                                 user.viewAvailableThemes();
                                 break;
-                            case 18:
+                            case 16:
                                 user.viewMyCalendar();
                                 break;
-                            case 19:
+                            case 17:
                                 user.updatePersonalInformation();
                                 break;
-                            case 20:
+                            case 18:
                                 user.changeMyPassword();
                                 break;
-                            case 21:
+                            case 19:
                                 userRun = false;
                                 System.out.println("\nExit");
                                 break;

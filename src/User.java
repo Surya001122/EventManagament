@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class User {
+    Scanner sc = new Scanner(System.in);
     private String userName;
     private String userId;
     private Gender gender;
@@ -122,9 +124,64 @@ public class User {
         myCalendar.viewEvents();
     }
     public void viewMyCalendar(){
+        System.out.print("\nEnter 1 to view default calendar\nEnter 2 to view calendar by entering fromMonth and fromYear\nEnter your choice : ");
+        int calendarChoice;
+        try{
+            calendarChoice = Integer.parseInt(sc.nextLine().trim());
+        }
+        catch (NumberFormatException numberFormatException){
+            System.out.print("\nEnter valid choice. please try again...");
+            return;
+        }
+        switch(calendarChoice){
+            case 1:
+                myCalendar.viewMyCalendar();
+                break;
+            case 2:
+                int fromMonth,toMonth,fromYear,toYear;
+                System.out.print("\nEnter fromMonth : ");
+                try{
+                    fromMonth = Integer.parseInt(sc.nextLine().trim());
+                }
+                catch (NumberFormatException numberFormatException){
+                    System.out.print("\nEnter valid month. please try again...");
+                    return;
+                }
+                System.out.print("\nEnter fromYear : ");
+                try{
+                    fromYear = Integer.parseInt(sc.nextLine().trim());
+                }
+                catch (NumberFormatException numberFormatException){
+                    System.out.print("\nEnter valid year. please try again...");
+                    return;
+                }
+                System.out.print("\nEnter toMonth : ");
+                try{
+                    toMonth = Integer.parseInt(sc.nextLine().trim());
+                }
+                catch (NumberFormatException numberFormatException){
+                    System.out.print("\nEnter valid month. please try again...");
+                    return;
+                }
+                System.out.print("\nEnter toYear : ");
+                try{
+                    toYear = Integer.parseInt(sc.nextLine().trim());
+                }
+                catch (NumberFormatException numberFormatException){
+                    System.out.print("\nEnter valid year. please try again...");
+                    return;
+                }
+                myCalendar.viewMyCalendar(fromMonth,toMonth,fromYear,toYear);
+                break;
+            case 3:
+                System.out.print("\nExit");
+                break;
+            default:
+                System.out.print("\nEnter valid choice.Please try again...");
+                break;
+        }
         myCalendar.viewMyCalendar();
-        myCalendar.viewMyCalendar("1");
-        myCalendar.viewMyCalendar("1","2");
+
     }
     public void addBirthdays(){
         myCalendar.addBirthdays();
@@ -137,12 +194,6 @@ public class User {
     }
     public void viewBirthdays(){
         myCalendar.viewBirthdays();
-    }
-    public void addHolidays(){
-        myCalendar.addHolidays();
-    }
-    public void removeHolidays(){
-        myCalendar.removeHolidays();
     }
     public void viewMyHolidays(){
         myCalendar.viewHolidays();
