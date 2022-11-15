@@ -4,6 +4,7 @@ public class Birthday extends RecurringEvent{
     private Gender gender;
     private String jobTitle;
     private String location;
+    static String birthdayTheme = "";
 
     public Birthday(String eventTitle, String eventDescription, String evenStartDate, String eventEndDate, String contactName, String phoneNumber, Gender gender, String jobTitle, String location) {
         super(eventTitle, eventDescription, evenStartDate, eventEndDate);

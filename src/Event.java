@@ -13,7 +13,6 @@ public abstract class Event {
     private String eventStartDate;
     private String eventEndDate;
     private Status eventStatus;
-    private String eventTheme;
 
     public Event(String eventTitle, String eventDescription, String evenStartDate, String eventEndDate) {
         this.eventId = Id++;
@@ -69,14 +68,6 @@ public abstract class Event {
 
     public void setEventStatus(Status eventStatus) {
         this.eventStatus = eventStatus;
-    }
-
-    public String getEventTheme() {
-        return eventTheme;
-    }
-
-    public void setEventTheme(String eventTheme) {
-        this.eventTheme = eventTheme;
     }
 
     abstract void createReminder(long seconds);

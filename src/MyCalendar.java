@@ -20,6 +20,7 @@ public class MyCalendar {
         this.birthdays = new ArrayList<>();
         this.holidays = new ArrayList<>();
         myThemes = new HashMap<>();
+        Admin.addThemes(myThemes);
     }
 
     public ArrayList<Task> getMyTasks() {
@@ -1272,9 +1273,54 @@ public class MyCalendar {
         return true;
     }
     public void viewAvailableThemes(){
-
+        for (HashMap.Entry<String,String> entry : myThemes.entrySet())
+        {
+            System.out.println("Theme: " + entry.getKey());
+        }
     }
-    public void setThemes(){}
+    public void setThemes(){
+        System.out.print("\nEnter 1 to set theme for event\nEnter 2 to set theme for task\nEnter 3 to set theme for birthday\nEnter 4 to set theme for holiday\nEnter 5 to reset theme for event\nEnter 6 to reset theme for task\nEnter 7 to reset theme for birthday\nEnter 8 to reset theme for holiday\nEnter your choice : ");
+        int themeChoice;
+        try{
+            themeChoice = Integer.parseInt(sc.nextLine().trim());
+        }
+        catch (NumberFormatException numberFormatException){
+            System.out.print("\nEnter valid option..please try again..");
+            return;
+        }
+        viewAvailableThemes();
+        System.out.print("\nEnter the color to change the theme (IN CAPITALS): ");
+        String newColour = sc.nextLine().trim();
+        switch(themeChoice){
+            case 1:
+                SpecialEvent.eventTheme = myThemes.get(newColour);
+                break;
+            case 2:
+                Task.taskTheme = myThemes.get(newColour);
+                break;
+            case 3:
+                Birthday.birthdayTheme = myThemes.get(newColour);
+                break;
+            case 4:
+                Holiday.holidayTheme = myThemes.get(newColour);
+                break;
+            case 5:
+                SpecialEvent.eventTheme = "";
+                break;
+            case 6:
+                Task.taskTheme = "";
+                break;
+            case 7:
+                Birthday.birthdayTheme = "";
+                break;
+            case 8:
+                Holiday.holidayTheme = "";
+                break;
+            default:
+                System.out.print("\nExit");
+                break;
+        }
+    }
     public boolean isEqual(int day, int month, int year, String date){
         String dateParts[] =  date.split("/");
         int dayPart = Integer.parseInt(dateParts[0]);
@@ -1283,15 +1329,15 @@ public class MyCalendar {
         return (dayPart == day && monthPart-1 == month && yearPart == year);
     }
     public void displayEvent(SpecialEvent event){
-        System.out.println("\nEvent ID : "+event.getEventId()+"\nEvent title : "+event.getEventTitle()+"\nEvent description : "+event.getEventDescription()+"\nEvent location & type : ("+event.getEventType()+") "+event.getEventLocation()+"\nEvent start date : "+event.getEventStartDate()+"\nEvent end date : "+event.getEventEndDate()+"\nEvent start time : "+event.getNonRecurringEventStartTime()+"\nEvent end time : "+event.getNonRecurringEventEndTime()+"\n-----------------------------------");
+        System.out.println(SpecialEvent.eventTheme+"\nEvent ID : "+event.getEventId()+"\nEvent title : "+event.getEventTitle()+"\nEvent description : "+event.getEventDescription()+"\nEvent location & type : ("+event.getEventType()+") "+event.getEventLocation()+"\nEvent start date : "+event.getEventStartDate()+"\nEvent end date : "+event.getEventEndDate()+"\nEvent start time : "+event.getNonRecurringEventStartTime()+"\nEvent end time : "+event.getNonRecurringEventEndTime()+"\n-----------------------------------"+"\u001B[0m");
     }
     public void displayTask(Task task){
-        System.out.println("\nTask ID : "+task.getEventId()+"\nTask title : "+task.getEventTitle()+"\nTask description : "+task.getEventDescription()+"\nTask start date : "+task.getEventStartDate()+"\nTask end date : "+task.getEventEndDate()+"\nTask start time : "+task.getNonRecurringEventStartTime()+"\nTask end time : "+task.getNonRecurringEventEndTime()+"\n-----------------------------------");
+        System.out.println(Task.taskTheme+"\nTask ID : "+task.getEventId()+"\nTask title : "+task.getEventTitle()+"\nTask description : "+task.getEventDescription()+"\nTask start date : "+task.getEventStartDate()+"\nTask end date : "+task.getEventEndDate()+"\nTask start time : "+task.getNonRecurringEventStartTime()+"\nTask end time : "+task.getNonRecurringEventEndTime()+"\n-----------------------------------"+"\u001B[0m");
     }
     public void displayHoliday(Holiday holiday){
-        System.out.println("\nHoliday ID : "+holiday.getEventId()+"\nHoliday title : "+holiday.getEventTitle()+"\nHoliday description : "+holiday.getEventDescription()+"\nHoliday date : "+holiday.getEventStartDate()+"\nType of holiday : "+holiday.getHolidayType()+"\n-----------------------------------");
+        System.out.println(Holiday.holidayTheme+"\nHoliday ID : "+holiday.getEventId()+"\nHoliday title : "+holiday.getEventTitle()+"\nHoliday description : "+holiday.getEventDescription()+"\nHoliday date : "+holiday.getEventStartDate()+"\nType of holiday : "+holiday.getHolidayType()+"\n-----------------------------------"+"\u001B[0m");
     }
     public void displayBirthday(Birthday birthday){
-        System.out.println("\nBirthday ID : "+birthday.getEventId()+"\nBirthday title : "+birthday.getEventTitle()+"\nBirthday description : "+birthday.getEventDescription()+"\nDate Of Birth : "+birthday.getEventStartDate()+"\nName : "+birthday.getContactName()+"\nPhoneNumber : "+birthday.getPhoneNumber()+"\nGender : "+birthday.getGender()+"\nJob : "+birthday.getJobTitle()+"\nLocation : "+birthday.getLocation()+"\n-----------------------------------");
+        System.out.println(Birthday.birthdayTheme+"\nBirthday ID : "+birthday.getEventId()+"\nBirthday title : "+birthday.getEventTitle()+"\nBirthday description : "+birthday.getEventDescription()+"\nDate Of Birth : "+birthday.getEventStartDate()+"\nName : "+birthday.getContactName()+"\nPhoneNumber : "+birthday.getPhoneNumber()+"\nGender : "+birthday.getGender()+"\nJob : "+birthday.getJobTitle()+"\nLocation : "+birthday.getLocation()+"\n-----------------------------------"+"\u001B[0m");
     }
 }

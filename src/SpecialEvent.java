@@ -4,6 +4,7 @@ public class SpecialEvent extends NonRecurringEvent{
     private ArrayList<String> Attendees;
     private String eventLocation;
     private Type eventType;
+    static String eventTheme = "";
 
     public SpecialEvent(String eventTitle, String eventDescription, String evenStartDate, String eventEndDate, String nonRecurringEventStartTime, String nonRecurringEventEndTime, String eventLocation, Type eventType) {
         super(eventTitle, eventDescription, evenStartDate, eventEndDate, nonRecurringEventStartTime, nonRecurringEventEndTime);

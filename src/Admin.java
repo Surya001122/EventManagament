@@ -1,3 +1,4 @@
+import com.sun.org.apache.xpath.internal.res.XPATHMessages;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 
 import java.util.ArrayList;
@@ -165,7 +166,14 @@ public class Admin {
     }
     public void addHolidays(){}
     public void removeHolidays(){}
-    public void addThemes(){
-
+    public static void addThemes(HashMap<String,String> Themes){
+        Themes.put("BLACK","\u001B[30m");
+        Themes.put("RED","\u001B[31m");
+        Themes.put("GREEN","\u001B[32m");
+        Themes.put("YELLOW","\u001B[33m");
+        Themes.put("BLUE","\u001B[34m");
+        Themes.put("PURPLE","\u001B[35m");
+        Themes.put("CYAN","\u001B[36m");
+        Themes.put("WHITE","\u001B[37m");
     }
 }
