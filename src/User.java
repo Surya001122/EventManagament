@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class User {
+
     Scanner sc = new Scanner(System.in);
     private String userName;
     private String userId;

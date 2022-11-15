@@ -1,4 +1,5 @@
 public interface Reminder {
+
     void displayMessageForEvent(long seconds);
     void playRingtoneForEvent();
     void displayMessageForBirthdays();

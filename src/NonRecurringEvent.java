@@ -3,6 +3,7 @@ import apple.laf.JRSUIUtils;
 import java.util.Scanner;
 
 public class NonRecurringEvent extends Event{
+
     Scanner sc = new Scanner(System.in);
     private String nonRecurringEventStartTime; // start time varies according to the user.
     private String nonRecurringEventEndTime; // end time varies according to the user.

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Admin {
+
     Scanner sc;
     private String adminId;
     private String adminName;

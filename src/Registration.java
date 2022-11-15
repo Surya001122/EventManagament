@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 import java.util.Calendar;
 
 public class Registration {
-
     Scanner sc = new Scanner(System.in);
     private static int loginId = 1;
     private HashMap<String, String> usersLoginInfo;

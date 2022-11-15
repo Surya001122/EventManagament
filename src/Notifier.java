@@ -3,6 +3,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Notifier implements Reminder{
+
     Scanner sc = new Scanner(System.in);
     private Timer timer;
     private String messageType;

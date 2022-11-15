@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.*;
 
 public class MyCalendar {
+
     Scanner sc = new Scanner(System.in);
     private ArrayList<Task> myTasks;
     private ArrayList<SpecialEvent> myEvents;
