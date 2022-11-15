@@ -171,7 +171,7 @@ public class User {
                     System.out.print("\nEnter valid year. please try again...");
                     return;
                 }
-                myCalendar.viewMyCalendar(fromMonth,toMonth,fromYear,toYear);
+                myCalendar.viewMyCalendar(fromMonth-1,toMonth-1,fromYear,toYear);
                 break;
             case 3:
                 System.out.print("\nExit");

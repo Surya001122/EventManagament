@@ -1,10 +1,10 @@
 public interface Notify {
-    void displayMessageForEvent();
+    void displayMessageForEvent(long seconds);
     void playRingtoneForEvent();
     void displayMessageForBirthdays();
     void playRingtoneForBirthdays();
     void displayMessageForHolidays();
     void playRingtoneForHolidays();
-    void displayMessageForTask();
+    void displayMessageForTask(long seconds);
     void playRingtoneForTask();
 }

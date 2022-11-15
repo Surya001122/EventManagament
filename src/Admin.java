@@ -1,6 +1,7 @@
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -164,7 +165,7 @@ public class Admin {
     }
     public void addHolidays(){}
     public void removeHolidays(){}
-    public void addThemes(){}
-    public void removeThemes(){}
-    public void viewThemes(){}
+    public void addThemes(){
+
+    }
 }

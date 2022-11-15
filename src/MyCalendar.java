@@ -19,6 +19,7 @@ public class MyCalendar {
         this.myEvents = new ArrayList<>();
         this.birthdays = new ArrayList<>();
         this.holidays = new ArrayList<>();
+        myThemes = new HashMap<>();
     }
 
     public ArrayList<Task> getMyTasks() {
@@ -64,7 +65,7 @@ public class MyCalendar {
     public void viewMyCalendar(){
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
+        int month = c.get(Calendar.MONTH); // 10
         GregorianCalendar calendar = new GregorianCalendar(year,month, 1);
         int startingDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // S M T W T F S 1 2 3 4 5 6 7
         int totalDaysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 28,29,30,31
@@ -220,7 +221,7 @@ public class MyCalendar {
                 }
                 System.out.println();
             }
-            System.out.print("\nEnter 1 to view Events\nEnter 2 to view tasks\nEnter 3 to view birthdays\nEnter 4 to view holidays\nEnter your choice : ");
+            System.out.print("\nEnter 1 to view Events\nEnter 2 to view tasks\nEnter 3 to view birthdays\nEnter 4 to view holidays\nEnter 5 to view all events\nEnter 6 to exit\nEnter your choice : ");
             int viewChoice;
             try{
                 viewChoice = Integer.parseInt(sc.nextLine().trim());
@@ -342,8 +343,8 @@ public class MyCalendar {
                 calendarRun = false;
             }
             fromMonth++;
-            if(fromMonth>11){
-                fromMonth = 0;
+            if(fromMonth>12){
+                fromMonth = 1;
                 fromYear++;
             }
         }

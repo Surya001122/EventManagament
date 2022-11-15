@@ -1,4 +1,9 @@
+import apple.laf.JRSUIUtils;
+
+import java.util.Scanner;
+
 public class NonRecurringEvent extends Event{
+    Scanner sc = new Scanner(System.in);
     private String nonRecurringEventStartTime; // start time varies according to the user.
     private String nonRecurringEventEndTime; // end time varies according to the user.
     Notify normalNotifier;
@@ -44,6 +49,26 @@ public class NonRecurringEvent extends Event{
 
     @Override
     public void createReminder(long seconds){
-        normalNotifier = new Notifier(seconds);
+        System.out.print("\nEnter 1 for task notifier\nEnter 2 for event notifier\nEnter your choice : ");
+        int reminderChoice = 0;
+        try{
+            reminderChoice = Integer.parseInt(sc.nextLine().trim());
+        }
+        catch (NumberFormatException numberFormatException){
+            System.out.print("\nEnter valid choice...\nNo reminder set...");
+        }
+        switch(reminderChoice){
+            case 1:
+                normalNotifier = new Notifier();
+                normalNotifier.displayMessageForTask(seconds);
+                break;
+            case 2:
+                normalNotifier = new Notifier();
+                normalNotifier.displayMessageForEvent(seconds);
+                break;
+            default:
+                System.out.print("\nExit");
+                break;
+        }
     }
 }
