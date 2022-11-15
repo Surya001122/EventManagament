@@ -97,7 +97,57 @@ public class User {
         this.myCalendar = myCalendar;
     }
 
-    public void updatePersonalInformation(){}
+    public void updatePersonalInformation(){
+        System.out.println("\nEnter 1 to change name\nEnter 2 to change gender\nEnter 3 to change workType\nEnter 4 to change location\nEnter 5 to change mobileNumber\nEnter 6 to exit\n\n\nEnter your choice : ");
+        int yourChoice;
+        try{
+            yourChoice = Integer.parseInt(sc.nextLine().trim());
+        }
+        catch (NumberFormatException numberFormatException){
+            System.out.println("\nEnter valid option...");
+            return;
+        }
+        switch(yourChoice)
+        {
+
+            case 1:
+                System.out.print("\nEnter your new name : ");
+                String newName = sc.nextLine().trim();
+                setUserName(newName);
+                System.out.println("\nProfile Updated...");
+                break;
+            case 2:
+                System.out.print("\nEnter your gender (MALE , FEMALE , OTHERS) : ");
+                String gender = sc.nextLine().trim();
+                Gender newGender = Gender.valueOf(gender);
+                setGender(newGender);
+                System.out.println("\nProfile Updated...");
+                break;
+            case 3:
+                System.out.print("\nEnter your new workType : ");
+                String newWorkType = sc.nextLine().trim();
+                setUserWorkType(newWorkType);
+                System.out.println("\nProfile Updated...");
+                break;
+            case 4:
+                System.out.print("\nEnter your new Location : ");
+                String newLocation = sc.nextLine().trim();
+                setUserLocation(newLocation);
+                System.out.println("\nProfile Updated...");
+                break;
+            case 5:
+                System.out.print("\nEnter your new mobileNumber : ");
+                String newPhoneNumber = sc.nextLine().trim();
+                setUserLocation(newPhoneNumber);
+                System.out.println("\nProfile Updated...");
+                break;
+            case 6:
+                System.out.println("\nExit");
+                break;
+            default:
+                break;
+        }
+    }
     public void changeMyPassword(){}
     public void createEvent(){
         myCalendar.addSpecialEvents();

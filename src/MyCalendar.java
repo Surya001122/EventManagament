@@ -419,20 +419,20 @@ public class MyCalendar {
             System.out.print("\nEnter valid type...Please try again");
             return;
         }
-        SpecialEvent event = new SpecialEvent(eventTitle,eventDescription,eventStartDate,eventEndDate,eventStartTime,eventEndTime,eventLocation,type);
-        myEvents.add(event);
-        System.out.print("\nNew event added");
         System.out.print("\nEnter 1 to set the alarm\nEnter 2 to exit\nEnter your choice : ");
         int alarmChoice = Integer.parseInt(sc.nextLine().trim());
         switch(alarmChoice){
             case 1:
                 long seconds = findTotalDayDifferenceInDates(eventStartDate,eventStartTime);
                 if(seconds != -1){
+                    SpecialEvent event = new SpecialEvent(eventTitle,eventDescription,eventStartDate,eventEndDate,eventStartTime,eventEndTime,eventLocation,type);
+                    myEvents.add(event);
                     event.createReminder(seconds);
+                    System.out.print("\nNew event added");
                 }
                 break;
             case 2:
-                System.out.print("\nAlarm not set for this event");
+                System.out.print("\nEvent not set");
                 break;
             default:
                 System.out.print("\nEnter valid option..try again...");
@@ -657,15 +657,15 @@ public class MyCalendar {
             System.out.print("\nEnter valid task endTime: ");
             taskEndTime = sc.nextLine().trim();
         }while(!validateTime(taskEndTime));
-        Task task = new Task(taskTitle,taskDescription,taskDate,taskDate,taskStartTime,taskEndTime);
-        myTasks.add(task);
-        System.out.print("\nNew task added");
         System.out.print("\nEnter 1 to set the alarm\nEnter 2 to exit\nEnter your choice : ");
         int alarmChoice = Integer.parseInt(sc.nextLine().trim());
         switch(alarmChoice){
             case 1:
                 long seconds = findTotalDayDifferenceInDates(taskDate,taskStartTime);
                 if(seconds != -1){
+                    Task task = new Task(taskTitle,taskDescription,taskDate,taskDate,taskStartTime,taskEndTime);
+                    myTasks.add(task);
+                    System.out.print("\nNew task added");
                     task.createReminder(seconds);
                 }
                 break;
@@ -1243,9 +1243,13 @@ public class MyCalendar {
             System.out.print("Enter valid date and time..Your event has no reminder...");
             return -1;
         }
-        long diffInMillies = Math.abs(d2.getTime() - d1.getTime());
-        long totalSeconds = TimeUnit.SECONDS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-        return totalSeconds;
+        if(d1.compareTo(d2)<0) {
+            long diffInMillies = Math.abs(d2.getTime() - d1.getTime());
+            long totalSeconds = TimeUnit.SECONDS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+            return totalSeconds;
+        }
+        System.out.print("\n Enter valid dates...");
+        return -1;
     }
     public boolean validateDate(String date){
         SimpleDateFormat vDate = new SimpleDateFormat("dd/MM/yyyy");
@@ -1274,6 +1278,7 @@ public class MyCalendar {
     public void setThemes(){
         System.out.print("\nEnter 1 to set theme for event\nEnter 2 to set theme for task\nEnter 3 to set theme for birthday\nEnter 4 to set theme for holiday\nEnter 5 to reset theme for event\nEnter 6 to reset theme for task\nEnter 7 to reset theme for birthday\nEnter 8 to reset theme for holiday\nEnter your choice : ");
         int themeChoice;
+        String newColour="";
         try{
             themeChoice = Integer.parseInt(sc.nextLine().trim());
         }
@@ -1281,9 +1286,11 @@ public class MyCalendar {
             System.out.print("\nEnter valid option..please try again..");
             return;
         }
-        viewAvailableThemes();
-        System.out.print("\nEnter the color to change the theme (IN CAPITALS): ");
-        String newColour = sc.nextLine().trim();
+        if(themeChoice>0 && themeChoice<5) {
+            viewAvailableThemes();
+            System.out.print("\nEnter the color to change the theme (IN CAPITALS): ");
+            newColour = sc.nextLine().trim();
+        }
         switch(themeChoice){
             case 1:
                 SpecialEvent.eventTheme = myThemes.get(newColour);
