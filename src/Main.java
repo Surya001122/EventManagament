@@ -108,9 +108,11 @@ public class Main {
                 case 3:
                     break;
                 case 4:
+                    System.out.println("\nExit");
                     start = false;
                     break;
                 default:
+                    start = false;
                     break;
             }
         }
