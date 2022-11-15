@@ -7,4 +7,5 @@ public interface Notify {
     void playRingtoneForHolidays();
     void displayMessageForTask(long seconds);
     void playRingtoneForTask();
+    void cancelReminder();
 }

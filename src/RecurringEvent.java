@@ -11,4 +11,6 @@ public class RecurringEvent extends Event{
 
     @Override
     public void createReminder(long seconds){}
+    @Override
+    public void cancelReminder(){}
 }

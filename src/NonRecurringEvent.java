@@ -67,8 +67,13 @@ public class NonRecurringEvent extends Event{
                 normalNotifier.displayMessageForEvent(seconds);
                 break;
             default:
-                System.out.print("\nExit");
+                System.out.println("\nExit");
                 break;
         }
+    }
+    @Override
+    public void cancelReminder(){
+        if(normalNotifier!=null)
+        normalNotifier.cancelReminder();
     }
 }

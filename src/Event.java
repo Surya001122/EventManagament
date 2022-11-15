@@ -80,4 +80,5 @@ public abstract class Event {
     }
 
     abstract void createReminder(long seconds);
+    abstract void cancelReminder();
 }

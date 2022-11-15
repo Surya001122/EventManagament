@@ -101,8 +101,10 @@ public class MyCalendar {
                                 star = true;
                             }
                         }
-                        if(star)
-                        System.out.print("\n***************************************************************************");
+                        if(star) {
+                            star = false;
+                            System.out.println("\n***************************************************************************");
+                        }
                         day++;
                     }
                 }
@@ -117,8 +119,10 @@ public class MyCalendar {
                                 star = true;
                             }
                         }
-                        if(star)
-                        System.out.print("\n***************************************************************************");
+                        if(star) {
+                            star = false;
+                            System.out.println("\n***************************************************************************");
+                        }
                         day++;
                     }
                 }
@@ -133,8 +137,10 @@ public class MyCalendar {
                                 star = true;
                             }
                         }
-                        if(star)
-                        System.out.print("\n***************************************************************************");
+                        if(star) {
+                            star = false;
+                            System.out.println("\n***************************************************************************");
+                        }
                         day++;
                     }
                 }
@@ -149,8 +155,10 @@ public class MyCalendar {
                                 star = true;
                             }
                         }
-                        if(star)
-                        System.out.print("\n***************************************************************************");
+                        if(star) {
+                            star = false;
+                            System.out.println("\n***************************************************************************");
+                        }
                         day++;
                     }
                 }
@@ -165,32 +173,40 @@ public class MyCalendar {
                                 star = true;
                             }
                         }
-                        if(star)
-                        System.out.print("\n***************************************************************************");
+                        if(star) {
+                            star = false;
+                            System.out.println("\n***************************************************************************");
+                        }
                         for(Task task : myTasks){
                             if(isEqual(day,month,year, task.getEventStartDate())){
                                 displayTask(task);
                                 star = true;
                             }
                         }
-                        if(star)
-                        System.out.print("\n***************************************************************************");
+                        if(star) {
+                            star = false;
+                            System.out.println("\n***************************************************************************");
+                        }
                         for(Birthday birthday : birthdays){
                             if(isEqual(day,month,year, birthday.getEventStartDate())){
                                 displayBirthday(birthday);
                                 star = true;
                             }
                         }
-                        if(star)
-                        System.out.print("\n***************************************************************************");
+                        if(star) {
+                            star = false;
+                            System.out.println("\n***************************************************************************");
+                        }
                         for(Holiday holiday : holidays){
                             if(isEqual(day,month,year, holiday.getEventStartDate())){
                                 displayHoliday(holiday);
                                 star = true;
                             }
                         }
-                        if(star)
-                        System.out.println("\n==========================================================================================================");
+                        if(star) {
+                            star = false;
+                            System.out.println("\n==========================================================================================================");
+                        }
                         day++;
                     }
                 }
@@ -241,8 +257,10 @@ public class MyCalendar {
                                     star = true;
                                 }
                             }
-                            if(star)
-                                System.out.print("\n***************************************************************************");
+                            if(star) {
+                                star = false;
+                                System.out.println("\n***************************************************************************");
+                            }
                             day++;
                         }
                     }
@@ -257,8 +275,10 @@ public class MyCalendar {
                                     star = true;
                                 }
                             }
-                            if(star)
-                                System.out.print("\n***************************************************************************");
+                            if(star) {
+                                star = false;
+                                System.out.println("\n***************************************************************************");
+                            }
                             day++;
                         }
                     }
@@ -273,8 +293,10 @@ public class MyCalendar {
                                     star = true;
                                 }
                             }
-                            if(star)
-                                System.out.print("\n***************************************************************************");
+                            if(star) {
+                                star = false;
+                                System.out.println("\n***************************************************************************");
+                            }
                             day++;
                         }
                     }
@@ -289,8 +311,10 @@ public class MyCalendar {
                                     star = true;
                                 }
                             }
-                            if(star)
-                                System.out.print("\n***************************************************************************");
+                            if(star) {
+                                star = false;
+                                System.out.println("\n***************************************************************************");
+                            }
                             day++;
                         }
                     }
@@ -305,32 +329,40 @@ public class MyCalendar {
                                     star = true;
                                 }
                             }
-                            if(star)
-                                System.out.print("\n***************************************************************************");
+                            if(star) {
+                                star = false;
+                                System.out.println("\n***************************************************************************");
+                            }
                             for(Task task : myTasks){
                                 if(isEqual(day,fromMonth,fromYear, task.getEventStartDate())){
                                     displayTask(task);
                                     star = true;
                                 }
                             }
-                            if(star)
-                                System.out.print("\n***************************************************************************");
+                            if(star) {
+                                star = false;
+                                System.out.println("\n***************************************************************************");
+                            }
                             for(Birthday birthday : birthdays){
                                 if(isEqual(day,fromMonth,fromYear, birthday.getEventStartDate())){
                                     displayBirthday(birthday);
                                     star = true;
                                 }
                             }
-                            if(star)
-                                System.out.print("\n***************************************************************************");
+                            if(star) {
+                                star = false;
+                                System.out.println("\n***************************************************************************");
+                            }
                             for(Holiday holiday : holidays){
                                 if(isEqual(day,fromMonth,fromYear, holiday.getEventStartDate())){
                                     displayHoliday(holiday);
                                     star = true;
                                 }
                             }
-                            if(star)
+                            if(star) {
+                                star = false;
                                 System.out.println("\n==========================================================================================================");
+                            }
                             day++;
                         }
                     }
@@ -393,7 +425,10 @@ public class MyCalendar {
         int alarmChoice = Integer.parseInt(sc.nextLine().trim());
         switch(alarmChoice){
             case 1:
-                event.createReminder(findTotalDayDifferenceInDates(eventStartDate,eventStartTime));
+                long seconds = findTotalDayDifferenceInDates(eventStartDate,eventStartTime);
+                if(seconds != -1){
+                    event.createReminder(seconds);
+                }
                 break;
             case 2:
                 System.out.print("\nAlarm not set for this event");
@@ -417,6 +452,7 @@ public class MyCalendar {
         SpecialEvent event = getSpecialEvent(eventId);
         if(event!=null) {
             myEvents.remove(event);
+            event.cancelReminder();
             System.out.print("\nEvent cancelled...");
         }
         else{
@@ -480,7 +516,7 @@ public class MyCalendar {
                     if(event!=null){
                         event.setEventStartDate(newEventStartDate);
                         System.out.print("\nNew Event start date modified...");
-
+                        event.cancelReminder();
                     }
                     else {
                         System.out.print("\nNo events present with id : " + eventId);
@@ -496,6 +532,7 @@ public class MyCalendar {
                     if(event!=null){
                         event.setEventEndDate(newEventEndDate);
                         System.out.print("\nNew Event end date modified...");
+                        event.cancelReminder();
 
                     }
                     else {
@@ -512,7 +549,7 @@ public class MyCalendar {
                     if(event!=null){
                         event.setNonRecurringEventStartTime(newEventStartTime);
                         System.out.print("\nNew Event start time modified...");
-
+                        event.cancelReminder();
                     }
                     else {
                         System.out.print("\nNo events present with id : " + eventId);
@@ -528,7 +565,7 @@ public class MyCalendar {
                     if(event!=null){
                         event.setNonRecurringEventEndTime(newEventEndTime);
                         System.out.print("\nNew Event end time modified...");
-
+                        event.cancelReminder();
                     }
                     else {
                         System.out.print("\nNo events present with id : " + eventId);
@@ -574,6 +611,30 @@ public class MyCalendar {
                     break;
             }
         }
+        int extraChoice;
+        try{
+            extraChoice = Integer.parseInt(sc.nextLine().trim());
+        }
+        catch (NumberFormatException numberFormatException){
+            System.out.print("\nEnter valid choice...Try again...");
+        }
+        System.out.print("\nSet the reminder if you have updated the time and date : ");
+        System.out.print("\nEnter 1 to set the alarm\nEnter 2 to exit\nEnter your choice : ");
+        int alarmChoice = Integer.parseInt(sc.nextLine().trim());
+        switch(alarmChoice){
+            case 1:
+                long seconds = findTotalDayDifferenceInDates(event.getEventStartDate(),event.getNonRecurringEventStartTime());
+                if(seconds != -1){
+                    event.createReminder(seconds);
+                }
+                break;
+            case 2:
+                System.out.print("\nAlarm not set for this event");
+                break;
+            default:
+                System.out.print("\nEnter valid option..try again...");
+                break;
+        }
     }
     public void addTasks(){
         System.out.print("\nEnter the task title : ");
@@ -598,6 +659,22 @@ public class MyCalendar {
         Task task = new Task(taskTitle,taskDescription,taskDate,taskDate,taskStartTime,taskEndTime);
         myTasks.add(task);
         System.out.print("\nNew task added");
+        System.out.print("\nEnter 1 to set the alarm\nEnter 2 to exit\nEnter your choice : ");
+        int alarmChoice = Integer.parseInt(sc.nextLine().trim());
+        switch(alarmChoice){
+            case 1:
+                long seconds = findTotalDayDifferenceInDates(taskDate,taskStartTime);
+                if(seconds != -1){
+                    task.createReminder(seconds);
+                }
+                break;
+            case 2:
+                System.out.print("\nAlarm not set for this task");
+                break;
+            default:
+                System.out.print("\nEnter valid option..try again...");
+                break;
+        }
     }
     public void deleteTasks(){
         viewTasks();
@@ -613,6 +690,7 @@ public class MyCalendar {
         Task task = getTask(taskId);
         if(task!=null) {
             myTasks.remove(task);
+            task.cancelReminder();
             System.out.print("\ntask cancelled...");
         }
         else{
@@ -679,6 +757,7 @@ public class MyCalendar {
                         task.setEventStartDate(newTaskDate);
                         task.setEventEndDate(newTaskDate);
                         System.out.print("\nNew task date modified...");
+                        task.cancelReminder();
 
                     }
                     else {
@@ -695,7 +774,7 @@ public class MyCalendar {
                     if(task!=null){
                         task.setNonRecurringEventStartTime(newTaskStartTime);
                         System.out.print("\nNew task start time modified...");
-
+                        task.cancelReminder();
                     }
                     else {
                         System.out.print("\nNo task present with id : " + taskId);
@@ -711,6 +790,7 @@ public class MyCalendar {
                     if(task!=null){
                         task.setNonRecurringEventEndTime(newTaskEndTime);
                         System.out.print("\nNew task end time modified...");
+                        task.cancelReminder();
                     }
                     else {
                         System.out.print("\nNo tasks present with id : " + taskId);
@@ -724,6 +804,30 @@ public class MyCalendar {
                     System.out.println("\nEnter valid choice...");
                     break;
             }
+        }
+        int extraChoice;
+        try{
+            extraChoice = Integer.parseInt(sc.nextLine().trim());
+        }
+        catch (NumberFormatException numberFormatException){
+            System.out.print("\nEnter valid choice...Try again...");
+        }
+        System.out.print("\nSet the reminder if you have updated the time and date : ");
+        System.out.print("\nEnter 1 to set the alarm\nEnter 2 to exit\nEnter your choice : ");
+        int alarmChoice = Integer.parseInt(sc.nextLine().trim());
+        switch(alarmChoice){
+            case 1:
+                long seconds = findTotalDayDifferenceInDates(task.getEventStartDate(),task.getNonRecurringEventStartTime());
+                if(seconds != -1){
+                    task.createReminder(seconds);
+                }
+                break;
+            case 2:
+                System.out.print("\nAlarm not set for this task");
+                break;
+            default:
+                System.out.print("\nEnter valid option..try again...");
+                break;
         }
     }
     public void addBirthdays() {
@@ -1142,7 +1246,8 @@ public class MyCalendar {
             d2 = format.parse(date2);
         }
         catch(ParseException e){
-            e.printStackTrace();
+            System.out.print("Enter valid date and time..Your event has no reminder...");
+            return -1;
         }
         long diffInMillies = Math.abs(d2.getTime() - d1.getTime());
         long totalSeconds = TimeUnit.SECONDS.convert(diffInMillies, TimeUnit.MILLISECONDS);
@@ -1178,15 +1283,15 @@ public class MyCalendar {
         return (dayPart == day && monthPart-1 == month && yearPart == year);
     }
     public void displayEvent(SpecialEvent event){
-        System.out.println("\nEvent ID : "+event.getEventId()+"   Event title : "+event.getEventTitle()+"    Event description : "+event.getEventDescription()+"   Event start date : "+event.getEventStartDate()+"   Event end date : "+event.getEventEndDate()+"   Event start time : "+event.getNonRecurringEventStartTime()+"   Event end time : "+event.getNonRecurringEventEndTime()+"   Event location & type : ("+event.getEventType()+") "+event.getEventLocation());
+        System.out.println("\nEvent ID : "+event.getEventId()+"\nEvent title : "+event.getEventTitle()+"\nEvent description : "+event.getEventDescription()+"\nEvent location & type : ("+event.getEventType()+") "+event.getEventLocation()+"\nEvent start date : "+event.getEventStartDate()+"\nEvent end date : "+event.getEventEndDate()+"\nEvent start time : "+event.getNonRecurringEventStartTime()+"\nEvent end time : "+event.getNonRecurringEventEndTime()+"\n-----------------------------------");
     }
     public void displayTask(Task task){
-        System.out.println("\nTask ID : "+task.getEventId()+"   Task title : "+task.getEventTitle()+"    Task description : "+task.getEventDescription()+"   Task start date : "+task.getEventStartDate()+"   Task end date : "+task.getEventEndDate()+"   Task start time : "+task.getNonRecurringEventStartTime()+"   Task end time : "+task.getNonRecurringEventEndTime());
+        System.out.println("\nTask ID : "+task.getEventId()+"\nTask title : "+task.getEventTitle()+"\nTask description : "+task.getEventDescription()+"\nTask start date : "+task.getEventStartDate()+"\nTask end date : "+task.getEventEndDate()+"\nTask start time : "+task.getNonRecurringEventStartTime()+"\nTask end time : "+task.getNonRecurringEventEndTime()+"\n-----------------------------------");
     }
     public void displayHoliday(Holiday holiday){
-        System.out.println("\nHoliday ID : "+holiday.getEventId()+"   Holiday title : "+holiday.getEventTitle()+"    Holiday description : "+holiday.getEventDescription()+"   Holiday date : "+holiday.getEventStartDate()+"   Type of holiday : "+holiday.getHolidayType());
+        System.out.println("\nHoliday ID : "+holiday.getEventId()+"\nHoliday title : "+holiday.getEventTitle()+"\nHoliday description : "+holiday.getEventDescription()+"\nHoliday date : "+holiday.getEventStartDate()+"\nType of holiday : "+holiday.getHolidayType()+"\n-----------------------------------");
     }
     public void displayBirthday(Birthday birthday){
-        System.out.println("\nBirthday ID : "+birthday.getEventId()+"   Birthday title : "+birthday.getEventTitle()+"    Birthday description : "+birthday.getEventDescription()+"   Date Of Birth : "+birthday.getEventStartDate()+"   Name : "+birthday.getContactName()+"    PhoneNumber : "+birthday.getPhoneNumber()+"    Gender : "+birthday.getGender()+"   Job : "+birthday.getJobTitle()+"    Location : "+birthday.getLocation());
+        System.out.println("\nBirthday ID : "+birthday.getEventId()+"\nBirthday title : "+birthday.getEventTitle()+"\nBirthday description : "+birthday.getEventDescription()+"\nDate Of Birth : "+birthday.getEventStartDate()+"\nName : "+birthday.getContactName()+"\nPhoneNumber : "+birthday.getPhoneNumber()+"\nGender : "+birthday.getGender()+"\nJob : "+birthday.getJobTitle()+"\nLocation : "+birthday.getLocation()+"\n-----------------------------------");
     }
 }

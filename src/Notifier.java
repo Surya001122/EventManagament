@@ -4,8 +4,25 @@ import java.util.TimerTask;
 
 public class Notifier implements Notify{
     Scanner sc = new Scanner(System.in);
-    Timer timer;
-    String messageType;
+    private Timer timer;
+    private String messageType;
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
+
+    public String getMessageType() {
+        return messageType;
+    }
+
+    public void setMessageType(String messageType) {
+        this.messageType = messageType;
+    }
+
     private class Reminder extends TimerTask{
         @Override
         public void run() {
@@ -43,4 +60,9 @@ public class Notifier implements Notify{
     }
     @Override
     public void playRingtoneForTask(){}
+    @Override
+    public void cancelReminder(){
+        if(timer != null)
+        timer.cancel();
+    }
 }
