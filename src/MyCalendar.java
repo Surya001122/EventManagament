@@ -1222,13 +1222,6 @@ public class MyCalendar {
         }
         return null;
     }
-    public Holiday getHoliday(int holidayId){
-        for(Holiday holiday : holidays){
-            if(holiday.getEventId() == holidayId)
-                return holiday;
-        }
-        return null;
-    }
     public Birthday getBirthday(int birthdayId){
         for(Birthday birthday : birthdays){
             if(birthday.getEventId() == birthdayId)

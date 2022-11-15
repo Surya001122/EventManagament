@@ -6,7 +6,7 @@ public class NonRecurringEvent extends Event{
     Scanner sc = new Scanner(System.in);
     private String nonRecurringEventStartTime; // start time varies according to the user.
     private String nonRecurringEventEndTime; // end time varies according to the user.
-    Notify normalNotifier;
+    Reminder normalNotifier;
     private int delay;
 
     public NonRecurringEvent(String eventTitle, String eventDescription, String evenStartDate, String eventEndDate, String nonRecurringEventStartTime, String nonRecurringEventEndTime) {
@@ -31,11 +31,11 @@ public class NonRecurringEvent extends Event{
         this.nonRecurringEventEndTime = nonRecurringEventEndTime;
     }
 
-    public Notify getNormalNotifier() {
+    public Reminder getNormalReminder() {
         return normalNotifier;
     }
 
-    public void setNormalNotifier(Notify normalNotifier) {
+    public void setNormalReminder(Reminder normalNotifier) {
         this.normalNotifier = normalNotifier;
     }
 

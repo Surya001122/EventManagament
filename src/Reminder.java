@@ -1,4 +1,4 @@
-public interface Notify {
+public interface Reminder {
     void displayMessageForEvent(long seconds);
     void playRingtoneForEvent();
     void displayMessageForBirthdays();
