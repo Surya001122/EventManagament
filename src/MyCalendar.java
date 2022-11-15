@@ -70,6 +70,7 @@ public class MyCalendar {
         GregorianCalendar calendar = new GregorianCalendar(year,month, 1);
         int startingDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // S M T W T F S 1 2 3 4 5 6 7
         int totalDaysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 28,29,30,31
+        System.out.println("\n"+SpecialEvent.eventTheme+"EVENT\n"+"\u001B[0m"+Task.taskTheme+"TASK\n"+"\u001B[0m"+Holiday.holidayTheme+"HOLIDAY\n"+"\u001B[0m"+Birthday.birthdayTheme+"BIRTHDAY\n"+"\u001B[0m");
         System.out.println(new SimpleDateFormat("MMMM YYYY").format(calendar.getTime()));
         System.out.println(" S  M  T  W  T  F  S");
         for (int i = 0; i < startingDayOfWeek - 1; i++) {
@@ -77,7 +78,41 @@ public class MyCalendar {
         }
         for (int i = 0, day = 1; day <= totalDaysInMonth; i++)  {
             for (int j = ((i == 0) ? startingDayOfWeek - 1 : 0); j < 7 && (day <= totalDaysInMonth); j++) {
-                System.out.printf("%2d ", day);
+                String colour = "";
+                boolean flag = false;
+                if(!flag) {
+                    for (SpecialEvent event : myEvents) {
+                        if (isEqual(day, month, year, event.getEventStartDate())) {
+                            flag = true;
+                            colour = SpecialEvent.eventTheme;
+                        }
+                    }
+                }
+                if(!flag) {
+                    for (Task task : myTasks) {
+                        if (isEqual(day, month, year, task.getEventStartDate())) {
+                            flag = true;
+                            colour = Task.taskTheme;
+                        }
+                    }
+                }
+                if(!flag) {
+                    for (Birthday birthday : birthdays) {
+                        if (isEqual(day, month, year, birthday.getEventStartDate())) {
+                            flag = true;
+                            colour = Birthday.birthdayTheme;
+                        }
+                    }
+                }
+                if(!flag) {
+                    for (Holiday holiday : holidays) {
+                        if (isEqual(day, month, year, holiday.getEventStartDate())) {
+                            flag = true;
+                            colour = Holiday.holidayTheme;
+                        }
+                    }
+                }
+                System.out.printf(colour+"%2d "+"\u001B[0m", day);
                 day++;
             }
             System.out.println();
@@ -213,7 +248,7 @@ public class MyCalendar {
                 }
                 break;
             case 6:
-                System.out.print("\nExit");
+                System.out.println("\nExit");
                 break;
             default:
                 System.out.print("\nEnter valid choice..try again...");
@@ -226,6 +261,7 @@ public class MyCalendar {
             GregorianCalendar calendar = new GregorianCalendar(fromYear,fromMonth, 1);
             int startingDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // S M T W T F S 1 2 3 4 5 6 7
             int totalDaysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 28,29,30,31
+            System.out.println("\n"+SpecialEvent.eventTheme+"EVENT\n"+"\u001B[0m"+Task.taskTheme+"TASK\n"+"\u001B[0m"+Holiday.holidayTheme+"HOLIDAY\n"+"\u001B[0m"+Birthday.birthdayTheme+"\nBIRTHDAY\n"+"\u001B[0m");
             System.out.println(new SimpleDateFormat("MMMM YYYY").format(calendar.getTime()));
             System.out.println(" S  M  T  W  T  F  S");
             for (int i = 0; i < startingDayOfWeek - 1; i++) {
@@ -233,7 +269,41 @@ public class MyCalendar {
             }
             for (int i = 0, day = 1; day <= totalDaysInMonth; i++)  {
                 for (int j = ((i == 0) ? startingDayOfWeek - 1 : 0); j < 7 && (day <= totalDaysInMonth); j++) {
-                    System.out.printf("%2d ", day);
+                    String colour = "";
+                    boolean flag = false;
+                    if(!flag) {
+                        for (SpecialEvent event : myEvents) {
+                            if (isEqual(day, fromMonth, fromYear, event.getEventStartDate())) {
+                                flag = true;
+                                colour = SpecialEvent.eventTheme;
+                            }
+                        }
+                    }
+                    if(!flag) {
+                        for (Task task : myTasks) {
+                            if (isEqual(day, fromMonth, fromYear, task.getEventStartDate())) {
+                                flag = true;
+                                colour = Task.taskTheme;
+                            }
+                        }
+                    }
+                    if(!flag) {
+                        for (Birthday birthday : birthdays) {
+                            if (isEqual(day, fromMonth, fromYear, birthday.getEventStartDate())) {
+                                flag = true;
+                                colour = Birthday.birthdayTheme;
+                            }
+                        }
+                    }
+                    if(!flag) {
+                        for (Holiday holiday : holidays) {
+                            if (isEqual(day, fromMonth, fromYear, holiday.getEventStartDate())) {
+                                flag = true;
+                                colour = Holiday.holidayTheme;
+                            }
+                        }
+                    }
+                    System.out.printf(colour+"%2d "+"\u001B[0m", day);
                     day++;
                 }
                 System.out.println();
@@ -368,12 +438,14 @@ public class MyCalendar {
                         }
                     }
                     break;
+                case 6:
+                    System.out.println("\nExit");
                 default:
                     System.out.print("\nEnter valid choice..try again...");
                     break;
             }
             if(fromYear == toYear && fromMonth == toMonth){
-                calendarRun = false;
+                return;
             }
             fromMonth++;
             if(fromMonth>12){
@@ -1243,7 +1315,7 @@ public class MyCalendar {
             System.out.print("Enter valid date and time..Your event has no reminder...");
             return -1;
         }
-        if(d1.compareTo(d2)<0) {
+        if(d1.compareTo(d2)<=0) {
             long diffInMillies = Math.abs(d2.getTime() - d1.getTime());
             long totalSeconds = TimeUnit.SECONDS.convert(diffInMillies, TimeUnit.MILLISECONDS);
             return totalSeconds;

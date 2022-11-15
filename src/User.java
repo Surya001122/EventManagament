@@ -230,8 +230,6 @@ public class User {
                 System.out.print("\nEnter valid choice.Please try again...");
                 break;
         }
-        myCalendar.viewMyCalendar();
-
     }
     public void addBirthdays(){
         myCalendar.addBirthdays();
