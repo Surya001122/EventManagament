@@ -8,7 +8,6 @@ public class NonRecurringEvent extends Event{
     private String nonRecurringEventStartTime; // start time varies according to the user.
     private String nonRecurringEventEndTime; // end time varies according to the user.
     Reminder normalNotifier;
-    private int delay;
 
     public NonRecurringEvent(String eventTitle, String eventDescription, String evenStartDate, String eventEndDate, String nonRecurringEventStartTime, String nonRecurringEventEndTime) {
         super(eventTitle, eventDescription, evenStartDate, eventEndDate);
@@ -39,15 +38,6 @@ public class NonRecurringEvent extends Event{
     public void setNormalReminder(Reminder normalNotifier) {
         this.normalNotifier = normalNotifier;
     }
-
-    public int getDelay() {
-        return delay;
-    }
-
-    public void setDelay(int delay) {
-        this.delay = delay;
-    }
-
     @Override
     public void createReminder(long seconds){
         System.out.print("\nEnter 1 for task notifier\nEnter 2 for event notifier\nEnter your choice : ");
@@ -60,12 +50,14 @@ public class NonRecurringEvent extends Event{
         }
         switch(reminderChoice){
             case 1:
-                normalNotifier = new Notifier();
+                normalNotifier = new Alarm();
                 normalNotifier.displayMessageForTask(seconds);
+                normalNotifier.playRingtoneForTask(seconds);
                 break;
             case 2:
-                normalNotifier = new Notifier();
+                normalNotifier = new Alarm();
                 normalNotifier.displayMessageForEvent(seconds);
+                normalNotifier.playRingtoneForEvent(seconds);
                 break;
             default:
                 System.out.println("\nExit");

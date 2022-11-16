@@ -1,12 +1,12 @@
 public interface Reminder {
 
     void displayMessageForEvent(long seconds);
-    void playRingtoneForEvent();
+    void playRingtoneForEvent(long seconds);
     void displayMessageForBirthdays();
     void playRingtoneForBirthdays();
     void displayMessageForHolidays();
     void playRingtoneForHolidays();
     void displayMessageForTask(long seconds);
-    void playRingtoneForTask();
+    void playRingtoneForTask(long seconds);
     void cancelReminder();
 }

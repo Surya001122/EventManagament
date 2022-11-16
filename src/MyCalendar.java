@@ -262,7 +262,7 @@ public class MyCalendar {
             GregorianCalendar calendar = new GregorianCalendar(fromYear,fromMonth, 1);
             int startingDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // S M T W T F S 1 2 3 4 5 6 7
             int totalDaysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 28,29,30,31
-            System.out.println("\n"+SpecialEvent.eventTheme+"EVENT\n"+"\u001B[0m"+Task.taskTheme+"TASK\n"+"\u001B[0m"+Holiday.holidayTheme+"HOLIDAY\n"+"\u001B[0m"+Birthday.birthdayTheme+"\nBIRTHDAY\n"+"\u001B[0m");
+            System.out.println("\n"+SpecialEvent.eventTheme+"EVENT\n"+"\u001B[0m"+Task.taskTheme+"TASK\n"+"\u001B[0m"+Holiday.holidayTheme+"HOLIDAY\n"+"\u001B[0m"+Birthday.birthdayTheme+"BIRTHDAY\n"+"\u001B[0m");
             System.out.println(new SimpleDateFormat("MMMM YYYY").format(calendar.getTime()));
             System.out.println(" S  M  T  W  T  F  S");
             for (int i = 0; i < startingDayOfWeek - 1; i++) {
@@ -441,6 +441,7 @@ public class MyCalendar {
                     break;
                 case 6:
                     System.out.println("\nExit");
+                    break;
                 default:
                     System.out.print("\nEnter valid choice..try again...");
                     break;
@@ -1362,7 +1363,9 @@ public class MyCalendar {
         if(themeChoice>0 && themeChoice<5) {
             viewAvailableThemes();
             System.out.print("\nEnter the color to change the theme (IN CAPITALS): ");
-            newColour = sc.nextLine().trim();
+            do {
+                newColour = sc.nextLine().trim();
+            }while(myThemes.containsKey(newColour));
         }
         switch(themeChoice){
             case 1:
