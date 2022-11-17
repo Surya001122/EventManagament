@@ -535,6 +535,7 @@ public class MyCalendar {
         }
     }
     public void updateSpecialEvents(){
+        viewEvents();
         System.out.print("\nEnter the event id to modify information : ");
         int eventId;
         try{
@@ -1414,7 +1415,7 @@ public class MyCalendar {
             System.out.print("\nEnter the color to change the theme (IN CAPITALS): ");
             do {
                 newColour = sc.nextLine().trim();
-            }while(myThemes.containsKey(newColour));
+            }while(!myThemes.containsKey(newColour));
         }
         switch(themeChoice){
             case 1:

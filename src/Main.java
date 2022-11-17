@@ -11,7 +11,7 @@ public class Main {
         boolean start = true;
         while(start)
         {
-            System.out.print("\n1.User SignUp\n2.UserLogin\n3.AdminLogin\n4.Exit\n\n\nEnter your choice : ");
+            System.out.print("\n1.SignUp\n2.Login\n3.Exit\n\n\nEnter your choice : ");
             int login;
             try {
                 login = Integer.parseInt(sc.nextLine().trim());
@@ -105,12 +105,11 @@ public class Main {
                     }
                     break;
                 case 3:
-                    break;
-                case 4:
                     System.out.println("\nExit");
                     start = false;
                     break;
                 default:
+                    System.out.print("\nEnter valid option...");
                     start = false;
                     break;
             }
