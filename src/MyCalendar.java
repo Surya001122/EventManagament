@@ -1,10 +1,9 @@
-import java.awt.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MyCalendar {
 
@@ -495,18 +494,19 @@ public class MyCalendar {
         }
         System.out.print("\nEnter 1 to set the alarm\nEnter 2 to exit\nEnter your choice : ");
         int alarmChoice = Integer.parseInt(sc.nextLine().trim());
+        boolean bool = true;
         switch(alarmChoice){
             case 1:
-                long seconds = findTotalDayDifferenceInDates(eventStartDate,eventStartTime);
+                long seconds = findTotalDayDifferenceInDates(eventStartDate,eventStartTime,bool);
                 if(seconds != -1){
                     SpecialEvent event = new SpecialEvent(eventTitle,eventDescription,eventStartDate,eventEndDate,eventStartTime,eventEndTime,eventLocation,type);
                     myEvents.add(event);
-                    event.createReminder(seconds);
                     System.out.print("\nNew event added");
+                    event.createReminder(seconds);
                 }
                 break;
             case 2:
-                System.out.print("\nEvent not set");
+                System.out.print("\nEvent alarm not set");
                 break;
             default:
                 System.out.print("\nEnter valid option..try again...");
@@ -695,10 +695,11 @@ public class MyCalendar {
         }
         System.out.print("\nSet the reminder if you have updated the time and date : ");
         System.out.print("\nEnter 1 to set the alarm\nEnter 2 to exit\nEnter your choice : ");
+        boolean bool = true;
         int alarmChoice = Integer.parseInt(sc.nextLine().trim());
         switch(alarmChoice){
             case 1:
-                long seconds = findTotalDayDifferenceInDates(event.getEventStartDate(),event.getNonRecurringEventStartTime());
+                long seconds = findTotalDayDifferenceInDates(event.getEventStartDate(),event.getNonRecurringEventStartTime(),bool);
                 if(seconds != -1){
                     event.createReminder(seconds);
                 }
@@ -733,9 +734,10 @@ public class MyCalendar {
         }while(!validateTime(taskEndTime));
         System.out.print("\nEnter 1 to set the alarm\nEnter 2 to exit\nEnter your choice : ");
         int alarmChoice = Integer.parseInt(sc.nextLine().trim());
+        boolean bool = true;
         switch(alarmChoice){
             case 1:
-                long seconds = findTotalDayDifferenceInDates(taskDate,taskStartTime);
+                long seconds = findTotalDayDifferenceInDates(taskDate,taskStartTime,bool);
                 if(seconds != -1){
                     Task task = new Task(taskTitle,taskDescription,taskDate,taskDate,taskStartTime,taskEndTime);
                     myTasks.add(task);
@@ -889,10 +891,11 @@ public class MyCalendar {
         }
         System.out.print("\nSet the reminder if you have updated the time and date : ");
         System.out.print("\nEnter 1 to set the alarm\nEnter 2 to exit\nEnter your choice : ");
+        boolean bool = true;
         int alarmChoice = Integer.parseInt(sc.nextLine().trim());
         switch(alarmChoice){
             case 1:
-                long seconds = findTotalDayDifferenceInDates(task.getEventStartDate(),task.getNonRecurringEventStartTime());
+                long seconds = findTotalDayDifferenceInDates(task.getEventStartDate(),task.getNonRecurringEventStartTime(),bool);
                 if(seconds != -1){
                     task.createReminder(seconds);
                 }
@@ -940,6 +943,23 @@ public class MyCalendar {
         Birthday birthday = new Birthday(birthdayTitle,birthdayDescription,dateOfBirth,dateOfBirth,contactName,phoneNumber,gender,jobTitle,location);
         birthdays.add(birthday);
         System.out.print("\nNew birthday added");
+        System.out.print("\nEnter 1 to set the alarm\nEnter 2 to exit\nEnter your choice : ");
+        int alarmChoice = Integer.parseInt(sc.nextLine().trim());
+        boolean bool = false;
+        switch(alarmChoice){
+            case 1:
+                long seconds = findTotalDayDifferenceInDates(dateOfBirth,birthday.getRecurringEventStartTime(),bool);
+                if(seconds != -1){
+                    birthday.createReminder(seconds);
+                }
+                break;
+            case 2:
+                System.out.print("\nAlarm not set for this birthday");
+                break;
+            default:
+                System.out.print("\nEnter valid option..try again...");
+                break;
+        }
     }
     public void removeBirthdays() {
         viewBirthdays();
@@ -1303,22 +1323,49 @@ public class MyCalendar {
         }
         return null;
     }
-    public long findTotalDayDifferenceInDates(String date,String time){
-        System.out.println("Enter today's date and time as (dd/MM/yyyy HH:mm:ss) : ");
-        String date1 = sc.nextLine().trim();
-        String date2 = date+" "+time;
-        Date d1 = null, d2 = null;
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        try{
-            d1 = format.parse(date1);
-            d2 = format.parse(date2);
+    public long findTotalDayDifferenceInDates(String date,String time,boolean bool){
+        if(bool) {
+            System.out.print("\nEnter today's date and time as (dd/MM/yyyy HH:mm:ss) : ");
+            String date1 = sc.nextLine().trim();
+            String date2 = date + " " + time;
+            Date d1 = null, d2 = null;
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            try {
+                d1 = format.parse(date1);
+                d2 = format.parse(date2);
+            } catch (ParseException e) {
+                System.out.println("\nEnter valid date and time..Your event has no reminder...");
+                return -1;
+            }
+            if (d1.before(d2)) {
+                long diffInMillies = Math.abs(d2.getTime() - d1.getTime());
+                long totalSeconds = TimeUnit.SECONDS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+                return totalSeconds;
+            }
         }
-        catch(ParseException e){
-            System.out.print("Enter valid date and time..Your event has no reminder...");
-            return -1;
-        }
-        if(d1.compareTo(d2)<=0) {
-            long diffInMillies = Math.abs(d2.getTime() - d1.getTime());
+        else{
+            System.out.print("\nEnter today's date (dd/MM/yyyy) : ");
+            String recurringDate = sc.nextLine().trim();
+            Date newDate = null;
+            Date currDate = new Date();
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            Calendar cal = Calendar.getInstance();
+            try{
+                newDate = format.parse(recurringDate);
+            }
+            catch (ParseException parseException){
+                System.out.println("\nEnter valid date and time..Your event has no reminder...");
+                return -1;
+            }
+            int currentYear = cal.getWeekYear();
+            cal.setTime(newDate);
+            cal.set(Calendar.YEAR,currentYear);
+            newDate = cal.getTime();
+            if(currDate.after(newDate)){
+                cal.set(Calendar.YEAR,currentYear+1);
+                newDate = cal.getTime();
+            }
+            long diffInMillies = Math.abs(newDate.getTime() - currDate.getTime());
             long totalSeconds = TimeUnit.SECONDS.convert(diffInMillies, TimeUnit.MILLISECONDS);
             return totalSeconds;
         }
@@ -1341,7 +1388,9 @@ public class MyCalendar {
         return true;
     }
     public boolean validateTime(String Time){
-        return true;
+        Pattern pattern = Pattern.compile("([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]");
+        Matcher matcher = pattern.matcher(Time);
+        return matcher.matches();
     }
     public void viewAvailableThemes(){
         for (HashMap.Entry<String,String> entry : myThemes.entrySet())

@@ -1,8 +1,4 @@
-import com.sun.org.apache.xpath.internal.res.XPATHMessages;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
-
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -81,7 +77,7 @@ public class Admin {
         User user = getUser(userId);
         if(user!=null) {
             users.remove(user);
-            System.out.println("\nUser removed from hotel...");
+            System.out.println("\nUser removed...");
         }
         else{
             System.out.println("\nUser not available...");

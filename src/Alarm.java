@@ -35,7 +35,11 @@ public class Alarm extends Notifier{
     private class RecurringSoundReminder extends TimerTask{
         @Override
         public void run() {
-
+            Toolkit.getDefaultToolkit().beep();
+            alarmCount++;
+            if(alarmCount == 20) {
+                soundTimer.cancel();
+            }
         }
     }
     @Override
@@ -44,10 +48,15 @@ public class Alarm extends Notifier{
         soundTimer.scheduleAtFixedRate(new NonRecurringSoundReminder(),seconds*1000L,1000L);
     }
     @Override
-    public void playRingtoneForBirthdays() {
+    public void playRingtoneForBirthdays(long seconds) {
+        soundTimer = new Timer();
+        soundTimer.scheduleAtFixedRate(new NonRecurringSoundReminder(),seconds*1000L,1000L);
     }
     @Override
-    public void playRingtoneForHolidays(){}
+    public void playRingtoneForHolidays(long seconds){
+        soundTimer = new Timer();
+        soundTimer.scheduleAtFixedRate(new NonRecurringSoundReminder(),seconds*1000L,1000L);
+    }
     @Override
     public void playRingtoneForTask(long seconds){
         soundTimer = new Timer();
@@ -55,8 +64,10 @@ public class Alarm extends Notifier{
     }
     @Override
     public void cancelReminder(){
-        if(soundTimer != null)
+        if(soundTimer != null) {
             soundTimer.cancel();
+            getMessageTimer().cancel();
+        }
     }
 
 }

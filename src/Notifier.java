@@ -8,11 +8,11 @@ public abstract class Notifier implements Reminder{
     private Timer messageTimer;
     private String messageType;
 
-    public Timer getTimer() {
+    public Timer getMessageTimer() {
         return messageTimer;
     }
 
-    public void setTimer(Timer messageTimer) {
+    public void setMessageTimer(Timer messageTimer) {
         this.messageTimer = messageTimer;
     }
 
@@ -44,9 +44,17 @@ public abstract class Notifier implements Reminder{
         messageTimer.schedule(new NonRecurringReminder(),seconds*1000L);
     }
     @Override
-    public void displayMessageForBirthdays() {}
+    public void displayMessageForBirthdays(long seconds) {
+        messageType = "Hi,Someone has a birthday today...Wish them happy birthday";
+        messageTimer = new Timer();
+        messageTimer.schedule(new NonRecurringReminder(),seconds*1000L);
+    }
     @Override
-    public void displayMessageForHolidays(){}
+    public void displayMessageForHolidays(long seconds){
+        messageType = "Hi,Enjoy your holiday";
+        messageTimer = new Timer();
+        messageTimer.schedule(new NonRecurringReminder(),seconds*1000L);
+    }
     @Override
     public void displayMessageForTask(long seconds){
         messageType = "Hi Your task has started...";
@@ -54,9 +62,4 @@ public abstract class Notifier implements Reminder{
         messageTimer.schedule(new NonRecurringReminder(),seconds*1000L);
     }
 
-    @Override
-    public void cancelReminder(){
-        if(messageTimer != null)
-            messageTimer.cancel();
-    }
 }
