@@ -108,45 +108,49 @@ public class User {
             System.out.println("\nEnter valid option...");
             return;
         }
-        switch(yourChoice)
-        {
-
-            case 1:
-                System.out.print("\nEnter your new name : ");
-                String newName = sc.nextLine().trim();
-                setUserName(newName);
-                System.out.println("\nProfile Updated...");
-                break;
-            case 2:
-                System.out.print("\nEnter your gender (MALE , FEMALE , OTHERS) : ");
-                String gender = sc.nextLine().trim();
-                Gender newGender = Gender.valueOf(gender);
-                setGender(newGender);
-                System.out.println("\nProfile Updated...");
-                break;
-            case 3:
-                System.out.print("\nEnter your new workType : ");
-                String newWorkType = sc.nextLine().trim();
-                setUserWorkType(newWorkType);
-                System.out.println("\nProfile Updated...");
-                break;
-            case 4:
-                System.out.print("\nEnter your new Location : ");
-                String newLocation = sc.nextLine().trim();
-                setUserLocation(newLocation);
-                System.out.println("\nProfile Updated...");
-                break;
-            case 5:
-                System.out.print("\nEnter your new mobileNumber : ");
-                String newPhoneNumber = sc.nextLine().trim();
-                setUserLocation(newPhoneNumber);
-                System.out.println("\nProfile Updated...");
-                break;
-            case 6:
-                System.out.println("\nExit");
-                break;
-            default:
-                break;
+        boolean personalChoice = true;
+        while(personalChoice) {
+            System.out.println("\nPersonal Information : "+"\nName : "+userName+"\nMobile Number : "+userPhoneNumber+"\nGender : "+gender+"\nWork : "+userWorkType+"\nLocation : "+userLocation);
+            switch (yourChoice) {
+                case 1:
+                    System.out.print("\nEnter your new name : ");
+                    String newName = sc.nextLine().trim();
+                    setUserName(newName);
+                    System.out.println("\nProfile Updated...");
+                    break;
+                case 2:
+                    System.out.print("\nEnter your gender (MALE , FEMALE , OTHERS) : ");
+                    String gender = sc.nextLine().trim();
+                    Gender newGender = Gender.valueOf(gender);
+                    setGender(newGender);
+                    System.out.println("\nProfile Updated...");
+                    break;
+                case 3:
+                    System.out.print("\nEnter your new workType : ");
+                    String newWorkType = sc.nextLine().trim();
+                    setUserWorkType(newWorkType);
+                    System.out.println("\nProfile Updated...");
+                    break;
+                case 4:
+                    System.out.print("\nEnter your new Location : ");
+                    String newLocation = sc.nextLine().trim();
+                    setUserLocation(newLocation);
+                    System.out.println("\nProfile Updated...");
+                    break;
+                case 5:
+                    System.out.print("\nEnter your new mobileNumber : ");
+                    String newPhoneNumber = sc.nextLine().trim();
+                    setUserLocation(newPhoneNumber);
+                    System.out.println("\nProfile Updated...");
+                    break;
+                case 6:
+                    System.out.println("\nExit");
+                    personalChoice = false;
+                    break;
+                default:
+                    personalChoice = false;
+                    break;
+            }
         }
     }
     public void changeMyPassword(){}

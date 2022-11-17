@@ -1345,11 +1345,11 @@ public class MyCalendar {
             }
         }
         else{
-            System.out.print("\nEnter today's date (dd/MM/yyyy) : ");
+            System.out.print("\nEnter today's date and time as (dd/MM/yyyy HH:mm:ss) : ");
             String recurringDate = sc.nextLine().trim();
             Date newDate = null;
             Date currDate = new Date();
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Calendar cal = Calendar.getInstance();
             try{
                 newDate = format.parse(recurringDate);
@@ -1368,6 +1368,7 @@ public class MyCalendar {
             }
             long diffInMillies = Math.abs(newDate.getTime() - currDate.getTime());
             long totalSeconds = TimeUnit.SECONDS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+            System.out.print(totalSeconds+"->Seconds");
             return totalSeconds;
         }
         System.out.print("\n Enter valid dates...");
