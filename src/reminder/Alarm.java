@@ -1,8 +1,10 @@
+package reminder;
+
 import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Alarm extends Notifier{
+public class Alarm extends Notifier {
     private Timer soundTimer;
     private int alarmCount = 0;
 

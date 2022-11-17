@@ -1,11 +1,15 @@
+package event;
+
+import constant.Type;
+
 import java.util.ArrayList;
 
-public class SpecialEvent extends NonRecurringEvent{
+public class SpecialEvent extends NonRecurringEvent {
 
     private ArrayList<String> Attendees;
     private String eventLocation;
     private Type eventType;
-    static String eventTheme = "";
+    public static String eventTheme = "";
 
     public SpecialEvent(String eventTitle, String eventDescription, String evenStartDate, String eventEndDate, String nonRecurringEventStartTime, String nonRecurringEventEndTime, String eventLocation, Type eventType) {
         super(eventTitle, eventDescription, evenStartDate, eventEndDate, nonRecurringEventStartTime, nonRecurringEventEndTime);
@@ -36,6 +40,7 @@ public class SpecialEvent extends NonRecurringEvent{
     public void setEventType(Type eventType) {
         this.eventType = eventType;
     }
+
 
     public void addAttender(){}
     public void deleteAttender(){}

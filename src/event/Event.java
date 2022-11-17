@@ -1,3 +1,7 @@
+package event;
+
+import constant.Status;
+
 public abstract class Event {
 
     private static int Id;
@@ -67,3 +71,4 @@ public abstract class Event {
     abstract void createReminder(long seconds);
     abstract void cancelReminder();
 }
+

@@ -1,8 +1,12 @@
+package reminder;
+
+import reminder.Reminder;
+
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public abstract class Notifier implements Reminder{
+public abstract class Notifier implements Reminder {
 
     Scanner sc = new Scanner(System.in);
     private Timer messageTimer;

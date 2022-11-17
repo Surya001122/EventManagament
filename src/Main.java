@@ -1,3 +1,8 @@
+import application.Admin;
+import application.User;
+import authentication.Registration;
+import constant.Gender;
+
 import java.util.Scanner;
 
 public class Main {
@@ -5,7 +10,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Registration signup = new Registration();
         Admin admin = new Admin("A1_Surya","Surya","Surya123!!!","Chennai","12345");
-        User u = new User("Surya","U1_Surya",Gender.MALE,"Surya123!!!","Doctor","Chennai","1234567890","01/08/2002");
+        User u = new User("Surya","U1_Surya", Gender.MALE,"Surya123!!!","Doctor","Chennai","1234567890","01/08/2002");
         signup.addLoginInfo(u.getUserId(), u.getUserPassword());
         admin.addUsers(u);
         boolean start = true;

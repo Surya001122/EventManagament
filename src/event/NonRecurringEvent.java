@@ -1,6 +1,12 @@
+package event;
+
+import reminder.Alarm;
+import reminder.Reminder;
+
+import java.awt.*;
 import java.util.Scanner;
 
-public class NonRecurringEvent extends Event{
+public class NonRecurringEvent extends Event {
 
     Scanner sc = new Scanner(System.in);
     private String nonRecurringEventStartTime; // start time varies according to the user.
@@ -49,11 +55,13 @@ public class NonRecurringEvent extends Event{
         switch(reminderChoice){
             case 1:
                 normalNotifier = new Alarm();
+                System.out.print("SECONDS -> "+seconds);
                 normalNotifier.displayMessageForTask(seconds);
                 normalNotifier.playRingtoneForTask(seconds);
                 break;
             case 2:
                 normalNotifier = new Alarm();
+                System.out.print("SECONDS -> "+seconds);
                 normalNotifier.displayMessageForEvent(seconds);
                 normalNotifier.playRingtoneForEvent(seconds);
                 break;

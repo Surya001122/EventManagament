@@ -1,3 +1,5 @@
+package constant;
+
 public enum Status {
     COMPLETE,
     INCOMPLETE,

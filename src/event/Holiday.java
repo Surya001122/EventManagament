@@ -1,7 +1,11 @@
-public class Holiday extends RecurringEvent{
+package event;
+
+import constant.HolidayType;
+
+public class Holiday extends RecurringEvent {
 
     private HolidayType holidayType;
-    static String holidayTheme = "";
+    public static String holidayTheme = "";
 
     public Holiday(String eventTitle, String eventDescription, String evenStartDate, String eventEndDate, HolidayType holidayType) {
         super(eventTitle, eventDescription, evenStartDate, eventEndDate);
@@ -15,4 +19,5 @@ public class Holiday extends RecurringEvent{
     public void setHolidayType(HolidayType holidayType) {
         this.holidayType = holidayType;
     }
+
 }

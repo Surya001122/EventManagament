@@ -1,7 +1,10 @@
+package event;
 
-public class Task extends NonRecurringEvent{
+import event.NonRecurringEvent;
 
-    static String taskTheme = "";
+public class Task extends NonRecurringEvent {
+
+    public static String taskTheme = "";
     public Task(String taskTitle, String taskDescription, String taskStartDate, String taskEndDate, String nonRecurringtaskStartTime, String nonRecurringtaskEndTime) {
         super(taskTitle, taskDescription, taskStartDate, taskEndDate, nonRecurringtaskStartTime, nonRecurringtaskEndTime);
     }

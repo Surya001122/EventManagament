@@ -1,3 +1,9 @@
+package authentication;
+
+import application.Admin;
+import application.User;
+import constant.Gender;
+
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -29,6 +35,8 @@ public class Registration {
     public void setVerification(Verification verification) {
         this.verification = verification;
     }
+
+
 
     public void userSignUp(Admin admin) {
         User user = null;
@@ -166,4 +174,6 @@ public class Registration {
         loginId += 1;
         return id;
     }
+
+
 }

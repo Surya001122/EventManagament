@@ -1,3 +1,5 @@
+package reminder;
+
 public interface Reminder {
 
     void displayMessageForEvent(long seconds);

@@ -1,3 +1,5 @@
+package application;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeUnit;
@@ -5,6 +7,13 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import authentication.Registration;
+import constant.Gender;
+import constant.Type;
+import event.Birthday;
+import event.Holiday;
+import event.SpecialEvent;
+import event.Task;
 public class MyCalendar {
 
     Scanner sc = new Scanner(System.in);
@@ -66,11 +75,11 @@ public class MyCalendar {
     public void viewMyCalendar(){
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH); // 10
+        int month = c.get(Calendar.MONTH); // 11
         GregorianCalendar calendar = new GregorianCalendar(year,month, 1);
         int startingDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // S M T W T F S 1 2 3 4 5 6 7
         int totalDaysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 28,29,30,31
-        System.out.println("\n"+SpecialEvent.eventTheme+"EVENT\n"+"\u001B[0m"+Task.taskTheme+"TASK\n"+"\u001B[0m"+Holiday.holidayTheme+"HOLIDAY\n"+"\u001B[0m"+Birthday.birthdayTheme+"BIRTHDAY\n"+"\u001B[0m");
+        System.out.println("\n"+ SpecialEvent.eventTheme+"EVENT\n"+"\u001B[0m"+ Task.taskTheme+"TASK\n"+"\u001B[0m"+ Holiday.holidayTheme+"HOLIDAY\n"+"\u001B[0m"+ Birthday.birthdayTheme+"BIRTHDAY\n"+"\u001B[0m");
         System.out.println(new SimpleDateFormat("MMMM YYYY").format(calendar.getTime()));
         System.out.println(" S  M  T  W  T  F  S");
         for (int i = 0; i < startingDayOfWeek - 1; i++) {
@@ -261,7 +270,7 @@ public class MyCalendar {
             GregorianCalendar calendar = new GregorianCalendar(fromYear,fromMonth, 1);
             int startingDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // S M T W T F S 1 2 3 4 5 6 7
             int totalDaysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 28,29,30,31
-            System.out.println("\n"+SpecialEvent.eventTheme+"EVENT\n"+"\u001B[0m"+Task.taskTheme+"TASK\n"+"\u001B[0m"+Holiday.holidayTheme+"HOLIDAY\n"+"\u001B[0m"+Birthday.birthdayTheme+"BIRTHDAY\n"+"\u001B[0m");
+            System.out.println("\n"+ SpecialEvent.eventTheme+"EVENT\n"+"\u001B[0m"+ Task.taskTheme+"TASK\n"+"\u001B[0m"+ Holiday.holidayTheme+"HOLIDAY\n"+"\u001B[0m"+ Birthday.birthdayTheme+"BIRTHDAY\n"+"\u001B[0m");
             System.out.println(new SimpleDateFormat("MMMM YYYY").format(calendar.getTime()));
             System.out.println(" S  M  T  W  T  F  S");
             for (int i = 0; i < startingDayOfWeek - 1; i++) {
@@ -506,7 +515,7 @@ public class MyCalendar {
                 }
                 break;
             case 2:
-                System.out.print("\nEvent alarm not set");
+                System.out.print("\nevent alarm not set");
                 break;
             default:
                 System.out.print("\nEnter valid option..try again...");
@@ -1310,7 +1319,7 @@ public class MyCalendar {
         }
         return null;
     }
-    public Task  getTask(int taskId){
+    public Task getTask(int taskId){
         for(Task task : myTasks){
             if(task.getEventId() == taskId)
                 return task;
