@@ -1356,28 +1356,27 @@ public class MyCalendar {
         else{
             System.out.print("\nEnter today's date and time as (dd/MM/yyyy HH:mm:ss) : ");
             String recurringDate = sc.nextLine().trim();
-            Date newDate = null;
-            Date currDate = new Date();
+            Date birthDate = null,currDate = null;
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             Calendar cal = Calendar.getInstance();
             try{
-                newDate = format.parse(recurringDate);
+                birthDate = format.parse(date+" "+time);
+                currDate = format.parse(recurringDate);
             }
             catch (ParseException parseException){
                 System.out.println("\nEnter valid date and time..Your event has no reminder...");
                 return -1;
             }
             int currentYear = cal.getWeekYear();
-            cal.setTime(newDate);
+            cal.setTime(birthDate);
             cal.set(Calendar.YEAR,currentYear);
-            newDate = cal.getTime();
-            if(currDate.after(newDate)){
+            birthDate = cal.getTime();
+            if(currDate.after(birthDate)){
                 cal.set(Calendar.YEAR,currentYear+1);
-                newDate = cal.getTime();
+                birthDate = cal.getTime();
             }
-            long diffInMillies = Math.abs(newDate.getTime() - currDate.getTime());
+            long diffInMillies = Math.abs(birthDate.getTime() - currDate.getTime());
             long totalSeconds = TimeUnit.SECONDS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-            System.out.print(totalSeconds+"->Seconds");
             return totalSeconds;
         }
         System.out.print("\n Enter valid dates...");
