@@ -4,9 +4,10 @@ import reminder.Alarm;
 import reminder.Reminder;
 
 import java.awt.*;
+import java.util.Date;
 import java.util.Scanner;
 
-public class NonRecurringEvent extends Event {
+public abstract class NonRecurringEvent extends Event {
 
     Scanner sc = new Scanner(System.in);
     private String nonRecurringEventStartTime; // start time varies according to the user.
@@ -43,7 +44,7 @@ public class NonRecurringEvent extends Event {
         this.normalNotifier = normalNotifier;
     }
     @Override
-    public void createReminder(long seconds){
+    public void createReminder(Date date1, Date date2, long seconds){
         System.out.print("\nEnter 1 for task notifier\nEnter 2 for event notifier\nEnter your choice : ");
         int reminderChoice = 0;
         try{
@@ -56,14 +57,11 @@ public class NonRecurringEvent extends Event {
             case 1:
                 normalNotifier = new Alarm();
                 System.out.print("SECONDS -> "+seconds);
-                normalNotifier.displayMessageForTask(seconds);
-                normalNotifier.playRingtoneForTask(seconds);
-                break;
+                normalNotifier.playRingtoneForTask(date1,date2,seconds);
             case 2:
                 normalNotifier = new Alarm();
                 System.out.print("SECONDS -> "+seconds);
-                normalNotifier.displayMessageForEvent(seconds);
-                normalNotifier.playRingtoneForEvent(seconds);
+                normalNotifier.playRingtoneForEvent(date1,date2,seconds);
                 break;
             default:
                 System.out.println("\nExit");
@@ -76,3 +74,4 @@ public class NonRecurringEvent extends Event {
         normalNotifier.cancelReminder();
     }
 }
+

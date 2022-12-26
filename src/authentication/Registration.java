@@ -96,24 +96,12 @@ public class Registration {
                 return false;
             }
         }
-
-        public boolean adminVerification(String adminId) {
-            System.out.print("\nEnter your password : ");
-            String adminPassword = sc.nextLine().trim();
-            if (usersLoginInfo.get(adminId).equals(adminPassword)) {
-                System.out.println("\n\nAdmin logged in successfully...");
-                return true;
-            } else {
-                System.out.println("\nYou entered wrong password...Please try again...");
-                return false;
-            }
-        }
     }
     public String createLogin()
     {
         int choice;
         String id = null;
-        System.out.print("\nEnter 1 for admin login\nEnter 2 for user login\nEnter 3 to exit\n\n\nEnter your choice : ");
+        System.out.print("\nEnter 1 for user login\nEnter 2 to exit\n\n\nEnter your choice : ");
         try {
             choice = Integer.parseInt(sc.nextLine().trim());
         } catch (NumberFormatException numberFormatException) {
@@ -122,18 +110,6 @@ public class Registration {
         }
         switch(choice){
             case 1:
-                System.out.print("\nEnter your adminId : ");
-                id = sc.nextLine().trim();
-                if (usersLoginInfo.containsKey(id)) {
-                    if(!verification.adminVerification(id)){
-                        id = null;
-                    }
-                } else {
-                    System.out.println("\nYour ID does not exist...Please try again...");
-                    id = null;
-                }
-                break;
-            case 2:
                 System.out.print("\nEnter your userId : ");
                 id = sc.nextLine().trim();
                 if (usersLoginInfo.containsKey(id)) {
@@ -151,6 +127,8 @@ public class Registration {
                 break;
             default:
                 System.out.print("\nEnter valid option..please try again...");
+                break;
+            case 2:
                 break;
         }
         return id;

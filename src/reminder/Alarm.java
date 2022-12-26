@@ -1,6 +1,7 @@
 package reminder;
 
 import java.awt.*;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -45,24 +46,28 @@ public class Alarm extends Notifier {
         }
     }
     @Override
-    public void playRingtoneForEvent(long seconds) {
+    public void playRingtoneForEvent(Date date1, Date date2, long seconds) {
         soundTimer = new Timer();
         soundTimer.scheduleAtFixedRate(new NonRecurringSoundReminder(),seconds*1000L,1000L);
+        displayMessageForEvent(date1,date2,seconds);
     }
     @Override
-    public void playRingtoneForBirthdays(long seconds) {
+    public void playRingtoneForBirthdays(Date date1, Date date2,long seconds) {
         soundTimer = new Timer();
-        soundTimer.scheduleAtFixedRate(new NonRecurringSoundReminder(),seconds*1000L,1000L);
+        soundTimer.scheduleAtFixedRate(new RecurringSoundReminder(),seconds*1000L,1000L);
+        displayMessageForBirthdays(date1,date2,seconds);
     }
     @Override
-    public void playRingtoneForHolidays(long seconds){
+    public void playRingtoneForHolidays(Date date1, Date date2,long seconds){
         soundTimer = new Timer();
-        soundTimer.scheduleAtFixedRate(new NonRecurringSoundReminder(),seconds*1000L,1000L);
+        soundTimer.scheduleAtFixedRate(new RecurringSoundReminder(),seconds*1000L,1000L);
+        displayMessageForHolidays(date1,date2,seconds);
     }
     @Override
-    public void playRingtoneForTask(long seconds){
+    public void playRingtoneForTask(Date date1, Date date2,long seconds){
         soundTimer = new Timer();
         soundTimer.scheduleAtFixedRate(new NonRecurringSoundReminder(),seconds*1000L,1000L);
+        displayMessageForTask(date1,date2,seconds);
     }
     @Override
     public void cancelReminder(){

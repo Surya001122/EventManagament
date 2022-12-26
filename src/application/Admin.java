@@ -13,7 +13,7 @@ public class Admin {
     private String adminLocation;
     private String adminPhoneNumber;
     private ArrayList<User> users;
-    public Admin(String adminId, String adminName,String adminPassword, String adminLocation, String adminPhoneNumber) {
+    public Admin(String adminId,String adminName,String adminPassword,String adminLocation,String adminPhoneNumber) {
         this.adminId = adminId;
         this.adminName = adminName;
         this.adminPassword = adminPassword;
@@ -163,8 +163,6 @@ public class Admin {
                 break;
         }
     }
-    public void addHolidays(){}
-    public void removeHolidays(){}
     public static void addThemes(HashMap<String,String> Themes){
         Themes.put("BLACK","\u001B[30m");
         Themes.put("RED","\u001B[31m");

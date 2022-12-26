@@ -9,11 +9,12 @@ import java.util.regex.Pattern;
 
 import authentication.Registration;
 import constant.Gender;
-import constant.Type;
+import constant.MeetingType;
 import event.Birthday;
 import event.Holiday;
 import event.SpecialEvent;
 import event.Task;
+
 public class MyCalendar {
 
     Scanner sc = new Scanner(System.in);
@@ -75,7 +76,7 @@ public class MyCalendar {
     public void viewMyCalendar(){
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH); // 11
+        int month = c.get(Calendar.MONTH);
         GregorianCalendar calendar = new GregorianCalendar(year,month, 1);
         int startingDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // S M T W T F S 1 2 3 4 5 6 7
         int totalDaysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH); // 28,29,30,31
@@ -464,64 +465,75 @@ public class MyCalendar {
             }
         }
     } // weekly view or monthly view of calendar events, calendar tasks, calendar holidays, calendar birthdays.
-    public void addSpecialEvents(){
-        System.out.print("\nEnter the event title : ");
-        String eventTitle = sc.nextLine().trim();
-        System.out.print("\nEnter the event description : ");
-        String eventDescription = sc.nextLine().trim();
-        String eventStartDate = "";
-        do{
-            System.out.print("\nEnter valid event startDate (dd/mm/yyyy): ");
-            eventStartDate = sc.nextLine().trim();
-        }while(!validateDate(eventStartDate));
-        String eventEndDate = "";
-        do{
-            System.out.print("\nEnter valid event endDate (dd/mm/yyyy): ");
-            eventEndDate = sc.nextLine().trim();
-        }while(!validateDate(eventEndDate));
-        String eventStartTime = "";
-        do{
-            System.out.print("\nEnter valid event startTime : ");
-            eventStartTime = sc.nextLine().trim();
-        }while(!validateTime(eventStartTime));
-        String eventEndTime = "";
-        do{
-            System.out.print("\nEnter valid event endTime: ");
-            eventEndTime = sc.nextLine().trim();
-        }while(!validateTime(eventEndTime));
-        System.out.print("\nEnter the location of the event : ");
-        String eventLocation = sc.nextLine().trim();
-        System.out.print("\nEnter the type of the event : (ONLINE OR OFFLINE)");
-        String eventType = sc.nextLine().trim();
-        Type type;
-        try{
-            type = Type.valueOf(eventType);
-        }
-        catch (IllegalArgumentException illegalArgumentException){
-            System.out.print("\nEnter valid type...Please try again");
-            return;
-        }
-        System.out.print("\nEnter 1 to set the alarm\nEnter 2 to exit\nEnter your choice : ");
-        int alarmChoice = Integer.parseInt(sc.nextLine().trim());
-        boolean bool = true;
-        switch(alarmChoice){
-            case 1:
-                long seconds = findTotalDayDifferenceInDates(eventStartDate,eventStartTime,bool);
-                if(seconds != -1){
-                    SpecialEvent event = new SpecialEvent(eventTitle,eventDescription,eventStartDate,eventEndDate,eventStartTime,eventEndTime,eventLocation,type);
-                    myEvents.add(event);
-                    System.out.print("\nNew event added");
-                    event.createReminder(seconds);
-                }
-                break;
-            case 2:
-                System.out.print("\nevent alarm not set");
-                break;
-            default:
-                System.out.print("\nEnter valid option..try again...");
-                break;
-        }
+public void addSpecialEvents(){
+    System.out.print("\nEnter the event title : ");
+    String eventTitle = sc.nextLine().trim();
+    System.out.print("\nEnter the event description : ");
+    String eventDescription = sc.nextLine().trim();
+    String eventStartDate = "";
+    do{
+        System.out.print("\nEnter valid event startDate (dd/mm/yyyy): ");
+        eventStartDate = sc.nextLine().trim();
+    }while(!validateDate(eventStartDate));
+    String eventEndDate = "";
+    do{
+        System.out.print("\nEnter valid event endDate (dd/mm/yyyy): ");
+        eventEndDate = sc.nextLine().trim();
+    }while(!validateDate(eventEndDate));
+    String eventStartTime = "";
+    do{
+        System.out.print("\nEnter valid event startTime : ");
+        eventStartTime = sc.nextLine().trim();
+    }while(!validateTime(eventStartTime));
+    String eventEndTime = "";
+    do{
+        System.out.print("\nEnter valid event endTime: ");
+        eventEndTime = sc.nextLine().trim();
+    }while(!validateTime(eventEndTime));
+    System.out.print("\nEnter the location of the event : ");
+    String eventLocation = sc.nextLine().trim();
+    System.out.print("\nEnter the type of the event : (ONLINE OR OFFLINE)");
+    String eventType = sc.nextLine().trim();
+    MeetingType type;
+    try{
+        type = MeetingType.valueOf(eventType);
     }
+    catch (IllegalArgumentException illegalArgumentException){
+        System.out.print("\nEnter valid type...Please try again");
+        return;
+    }
+    System.out.print("\nEnter 1 to set the alarm\nEnter 2 to exit\nEnter your choice : ");
+    int alarmChoice = Integer.parseInt(sc.nextLine().trim());
+    boolean bool = true;
+    switch(alarmChoice){
+        case 1:
+            System.out.print("\nEnter today's date and time as (dd/MM/yyyy HH:mm:ss) : ");
+            String date1 = sc.nextLine().trim();
+            String date2 = eventStartDate + " " + eventStartTime;
+            Date d1 = null, d2 = null;
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            try {
+                d1 = format.parse(date1);
+                d2 = format.parse(date2);
+            } catch (ParseException e) {
+                System.out.println("\nEnter valid date and time..Your event has no reminder...");
+            }
+            long seconds = findTotalDayDifferenceInDates(d1,d2,bool);
+            if(seconds != -1){
+                SpecialEvent event = new SpecialEvent(eventTitle,eventDescription,eventStartDate,eventEndDate,eventStartTime,eventEndTime,eventLocation,type);
+                myEvents.add(event);
+                System.out.print("\nNew event added");
+                event.createReminder(d1,d2,seconds);
+            }
+            break;
+        case 2:
+            System.out.print("\nevent alarm not set");
+            break;
+        default:
+            System.out.print("\nEnter valid option..try again...");
+            break;
+    }
+}
     public void cancelSpecialEvents(){
         viewEvents();
         System.out.print("\nEnter the event id to cancel : ");
@@ -557,7 +569,6 @@ public class MyCalendar {
         SpecialEvent event = getSpecialEvent(eventId);
         boolean updateBool = true;
         while(updateBool){
-            viewEvents();
             System.out.print("\nEnter 1 to change the event title\nEnter 2 to change the event description\nEnter 3 to change the event start date\nEnter 4 to change the event end date\nEnter 5 to change the event start time\nEnter 6 to change the event end time\nEnter 7 to change the event location\nEnter 8 to change the event type (ONLINE or OFFLINE)\nEnter 9 to exit\nEnter your choice : ");
             int updateChoice;
             try{
@@ -600,6 +611,7 @@ public class MyCalendar {
                     }while(!validateDate(newEventStartDate));
                     if(event!=null){
                         event.setEventStartDate(newEventStartDate);
+                        event.cancelReminder();
                         System.out.print("\nNew Event start date modified...");
                         event.cancelReminder();
                     }
@@ -616,6 +628,7 @@ public class MyCalendar {
                     }while(!validateDate(newEventEndDate));
                     if(event!=null){
                         event.setEventEndDate(newEventEndDate);
+                        event.cancelReminder();
                         System.out.print("\nNew Event end date modified...");
                         event.cancelReminder();
 
@@ -633,6 +646,7 @@ public class MyCalendar {
                     }while(!validateTime(newEventStartTime));
                     if(event!=null){
                         event.setNonRecurringEventStartTime(newEventStartTime);
+                        event.cancelReminder();
                         System.out.print("\nNew Event start time modified...");
                         event.cancelReminder();
                     }
@@ -649,6 +663,7 @@ public class MyCalendar {
                     }while(!validateTime(newEventEndTime));
                     if(event!=null){
                         event.setNonRecurringEventEndTime(newEventEndTime);
+                        event.cancelReminder();
                         System.out.print("\nNew Event end time modified...");
                         event.cancelReminder();
                     }
@@ -670,9 +685,9 @@ public class MyCalendar {
                 case 8:
                     System.out.print("Enter the new type: ");
                     String newEventType = sc.nextLine().trim();
-                    Type newType;
+                    MeetingType newType;
                     try{
-                        newType = Type.valueOf(newEventType);
+                        newType = MeetingType.valueOf(newEventType);
                     }
                     catch (IllegalArgumentException illegalArgumentException){
                         System.out.print("\nEnter valid type...Please try again");
@@ -695,6 +710,7 @@ public class MyCalendar {
                     System.out.println("\nEnter valid choice...");
                     break;
             }
+            viewEvents();
         }
         int extraChoice;
         try{
@@ -709,11 +725,23 @@ public class MyCalendar {
         int alarmChoice = Integer.parseInt(sc.nextLine().trim());
         switch(alarmChoice){
             case 1:
-                long seconds = findTotalDayDifferenceInDates(event.getEventStartDate(),event.getNonRecurringEventStartTime(),bool);
+                System.out.print("\nEnter today's date and time as (dd/MM/yyyy HH:mm:ss) : ");
+                String date1 = sc.nextLine().trim();
+                String date2 = event.getEventStartDate() + " " + event.getNonRecurringEventStartTime();
+                Date d1 = null, d2 = null;
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                try {
+                    d1 = format.parse(date1);
+                    d2 = format.parse(date2);
+                } catch (ParseException e) {
+                    System.out.println("\nEnter valid date and time..Your event has no reminder...");
+                }
+                long seconds = findTotalDayDifferenceInDates(d1,d2,bool);
                 if(seconds != -1){
-                    event.createReminder(seconds);
+                    event.createReminder(d1,d2,seconds);
                 }
                 break;
+
             case 2:
                 System.out.print("\nAlarm not set for this event");
                 break;
@@ -747,12 +775,24 @@ public class MyCalendar {
         boolean bool = true;
         switch(alarmChoice){
             case 1:
-                long seconds = findTotalDayDifferenceInDates(taskDate,taskStartTime,bool);
+                System.out.print("\nEnter today's date and time as (dd/MM/yyyy HH:mm:ss) : ");
+                String date1 = sc.nextLine().trim();
+                String date2 = taskDate + " " + taskStartTime;
+                Date d1 = null, d2 = null;
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                try {
+                    d1 = format.parse(date1);
+                    d2 = format.parse(date2);
+                }
+                catch (ParseException e) {
+                    System.out.println("\nEnter valid date and time..Your task has no reminder...");
+                }
+                long seconds = findTotalDayDifferenceInDates(d1,d2,bool);
                 if(seconds != -1){
                     Task task = new Task(taskTitle,taskDescription,taskDate,taskDate,taskStartTime,taskEndTime);
                     myTasks.add(task);
                     System.out.print("\nNew task added");
-                    task.createReminder(seconds);
+                    task.createReminder(d1,d2,seconds);
                 }
                 break;
             case 2:
@@ -843,6 +883,7 @@ public class MyCalendar {
                     if(task!=null){
                         task.setEventStartDate(newTaskDate);
                         task.setEventEndDate(newTaskDate);
+                        task.cancelReminder();
                         System.out.print("\nNew task date modified...");
                         task.cancelReminder();
 
@@ -860,6 +901,7 @@ public class MyCalendar {
                     }while(!validateTime(newTaskStartTime));
                     if(task!=null){
                         task.setNonRecurringEventStartTime(newTaskStartTime);
+                        task.cancelReminder();
                         System.out.print("\nNew task start time modified...");
                         task.cancelReminder();
                     }
@@ -876,6 +918,7 @@ public class MyCalendar {
                     }while(!validateTime(newTaskEndTime));
                     if(task!=null){
                         task.setNonRecurringEventEndTime(newTaskEndTime);
+                        task.cancelReminder();
                         System.out.print("\nNew task end time modified...");
                         task.cancelReminder();
                     }
@@ -905,9 +948,21 @@ public class MyCalendar {
         int alarmChoice = Integer.parseInt(sc.nextLine().trim());
         switch(alarmChoice){
             case 1:
-                long seconds = findTotalDayDifferenceInDates(task.getEventStartDate(),task.getNonRecurringEventStartTime(),bool);
+                System.out.print("\nEnter today's date and time as (dd/MM/yyyy HH:mm:ss) : ");
+                String date1 = sc.nextLine().trim();
+                String date2 = task.getEventStartDate() + " " + task.getNonRecurringEventStartTime();
+                Date d1 = null, d2 = null;
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                try {
+                    d1 = format.parse(date1);
+                    d2 = format.parse(date2);
+                }
+                catch (ParseException e) {
+                    System.out.println("\nEnter valid date and time..Your task has no reminder...");
+                }
+                long seconds = findTotalDayDifferenceInDates(d1,d2,bool);
                 if(seconds != -1){
-                    task.createReminder(seconds);
+                    task.createReminder(d1,d2,seconds);
                 }
                 break;
             case 2:
@@ -958,10 +1013,29 @@ public class MyCalendar {
         boolean bool = false;
         switch(alarmChoice){
             case 1:
-                long seconds = findTotalDayDifferenceInDates(dateOfBirth,birthday.getRecurringEventStartTime(),bool);
-                if(seconds != -1){
-                    birthday.createReminder(seconds);
+                System.out.print("\nEnter today's date and time as (dd/MM/yyyy HH:mm:ss) : ");
+                String todayDate = sc.nextLine().trim();
+                Date birthDate = null,currDate = null;
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                try{
+                    birthDate = format.parse(dateOfBirth+" "+birthday.getRecurringEventStartTime());
+                    currDate = format.parse(todayDate);
                 }
+                catch (ParseException parseException){
+                    System.out.println("\nEnter valid date and time..Your event has no reminder...");
+                }
+                Calendar cal = Calendar.getInstance();
+                if(currDate.after(birthDate)) {
+                    int nextYear = cal.getWeekYear() + 1;
+                    cal.setTime(birthDate);
+                    cal.set(Calendar.YEAR,nextYear);
+                    birthDate = cal.getTime();
+                }
+                System.out.println(currDate+"\n"+birthDate);
+                long diffInMillies = Math.abs(birthDate.getTime() - currDate.getTime());
+                long seconds = TimeUnit.SECONDS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+                System.out.println(currDate + " " + birthDate + " " + seconds);
+                birthday.createReminder(currDate, birthDate, seconds);
                 break;
             case 2:
                 System.out.print("\nAlarm not set for this birthday");
@@ -985,6 +1059,7 @@ public class MyCalendar {
         Birthday birthday = getBirthday(birthdayId);
         if(birthday!=null) {
             birthdays.remove(birthday);
+            birthday.cancelReminder();
             System.out.print("\nbirthday removed...");
         }
         else{
@@ -1050,6 +1125,7 @@ public class MyCalendar {
                     if(birthday!=null){
                         birthday.setEventStartDate(dob);
                         birthday.setEventEndDate(dob);
+                        birthday.cancelReminder();
                         System.out.print("\nNew dob modified...");
 
                     }
@@ -1137,6 +1213,51 @@ public class MyCalendar {
                     System.out.println("\nEnter valid choice...");
                     break;
             }
+        }
+        int extraChoice;
+        try{
+            extraChoice = Integer.parseInt(sc.nextLine().trim());
+        }
+        catch (NumberFormatException numberFormatException){
+            System.out.print("\nEnter valid choice...Try again...");
+        }
+        System.out.print("\nSet the reminder if you have updated the time and date : ");
+        System.out.print("\nEnter 1 to set the alarm\nEnter 2 to exit\nEnter your choice : ");
+        boolean bool = true;
+        int alarmChoice = Integer.parseInt(sc.nextLine().trim());
+        switch(alarmChoice){
+            case 1:
+                System.out.print("\nEnter today's date and time as (dd/MM/yyyy HH:mm:ss) : ");
+                String date1 = sc.nextLine().trim();
+                String date2 = birthday.getEventStartDate() + " " + birthday.getRecurringEventStartTime();
+                Date d1 = null, d2 = null;
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                try {
+                    d1 = format.parse(date1);
+                    d2 = format.parse(date2);
+                }
+                catch (ParseException e) {
+                    System.out.println("\nEnter valid date and time..Your task has no reminder...");
+                }
+                Calendar cal = Calendar.getInstance();
+                if(d1.after(d2)) {
+                    int nextYear = cal.getWeekYear() + 1;
+                    cal.setTime(d2);
+                    cal.set(Calendar.YEAR,nextYear);
+                    d2 = cal.getTime();
+                }
+                System.out.println(d1+"\n"+d2);
+                long diffInMillies = Math.abs(d2.getTime() - d1.getTime());
+                long seconds = TimeUnit.SECONDS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+                System.out.println(d1 + " " + d2 + " " + seconds);
+                birthday.createReminder(d1, d2, 1);
+                break;
+            case 2:
+                System.out.print("\nAlarm not set for this task");
+                break;
+            default:
+                System.out.print("\nEnter valid option..try again...");
+                break;
         }
     }
     public void viewTasks(){
@@ -1333,55 +1454,16 @@ public class MyCalendar {
         }
         return null;
     }
-    public long findTotalDayDifferenceInDates(String date,String time,boolean bool){
-        if(bool) {
-            System.out.print("\nEnter today's date and time as (dd/MM/yyyy HH:mm:ss) : ");
-            String date1 = sc.nextLine().trim();
-            String date2 = date + " " + time;
-            Date d1 = null, d2 = null;
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            try {
-                d1 = format.parse(date1);
-                d2 = format.parse(date2);
-            } catch (ParseException e) {
-                System.out.println("\nEnter valid date and time..Your event has no reminder...");
-                return -1;
-            }
-            if (d1.before(d2)) {
-                long diffInMillies = Math.abs(d2.getTime() - d1.getTime());
-                long totalSeconds = TimeUnit.SECONDS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-                return totalSeconds;
-            }
-        }
-        else{
-            System.out.print("\nEnter today's date and time as (dd/MM/yyyy HH:mm:ss) : ");
-            String recurringDate = sc.nextLine().trim();
-            Date birthDate = null,currDate = null;
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            Calendar cal = Calendar.getInstance();
-            try{
-                birthDate = format.parse(date+" "+time);
-                currDate = format.parse(recurringDate);
-            }
-            catch (ParseException parseException){
-                System.out.println("\nEnter valid date and time..Your event has no reminder...");
-                return -1;
-            }
-            int currentYear = cal.getWeekYear();
-            cal.setTime(birthDate);
-            cal.set(Calendar.YEAR,currentYear);
-            birthDate = cal.getTime();
-            if(currDate.after(birthDate)){
-                cal.set(Calendar.YEAR,currentYear+1);
-                birthDate = cal.getTime();
-            }
-            long diffInMillies = Math.abs(birthDate.getTime() - currDate.getTime());
-            long totalSeconds = TimeUnit.SECONDS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-            return totalSeconds;
-        }
-        System.out.print("\n Enter valid dates...");
-        return -1;
+
+public long findTotalDayDifferenceInDates(Date fromDate,Date toDate,boolean bool){
+    if(bool && fromDate.before(toDate)){
+        long diffInMillies = Math.abs(toDate.getTime() - fromDate.getTime());
+        long totalSeconds = TimeUnit.SECONDS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        return totalSeconds;
     }
+    System.out.print("\n Enter valid dates...");
+    return -1;
+}
     public boolean validateDate(String date){
         SimpleDateFormat vDate = new SimpleDateFormat("dd/MM/yyyy");
         vDate.setLenient(false);

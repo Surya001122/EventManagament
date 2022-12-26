@@ -1,14 +1,16 @@
 package reminder;
 
+import java.util.Date;
+
 public interface Reminder {
 
-    void displayMessageForEvent(long seconds);
-    void playRingtoneForEvent(long seconds);
-    void displayMessageForBirthdays(long seconds);
-    void playRingtoneForBirthdays(long seconds);
-    void displayMessageForHolidays(long seconds);
-    void playRingtoneForHolidays(long seconds);
-    void displayMessageForTask(long seconds);
-    void playRingtoneForTask(long seconds);
+    void displayMessageForEvent(Date date1, Date date2, long seconds);
+    void playRingtoneForEvent(Date date1, Date date2, long seconds);
+    void displayMessageForBirthdays(Date date1, Date date2, long seconds);
+    void playRingtoneForBirthdays(Date date1, Date date2, long seconds);
+    void displayMessageForHolidays(Date date1, Date date2, long seconds);
+    void playRingtoneForHolidays(Date date1, Date date2, long seconds);
+    void displayMessageForTask(Date date1, Date date2, long seconds);
+    void playRingtoneForTask(Date date1, Date date2, long seconds);
     void cancelReminder();
 }

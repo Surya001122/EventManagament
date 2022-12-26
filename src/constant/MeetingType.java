@@ -1,6 +1,6 @@
 package constant;
 
-public enum Type {
+public enum MeetingType {
     ONLINE,
     OFFLINE
 }

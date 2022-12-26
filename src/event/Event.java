@@ -1,6 +1,7 @@
 package event;
+import constant.EventStatus;
 
-import constant.Status;
+import java.util.Date;
 
 public abstract class Event {
 
@@ -10,7 +11,7 @@ public abstract class Event {
     private String eventDescription;
     private String eventStartDate;
     private String eventEndDate;
-    private Status eventStatus;
+    private EventStatus eventStatus;
 
     public Event(String eventTitle, String eventDescription, String evenStartDate, String eventEndDate) {
         this.eventId = Id++;
@@ -60,15 +61,15 @@ public abstract class Event {
         this.eventEndDate = eventEndDate;
     }
 
-    public Status getEventStatus() {
+    public EventStatus getEventStatus() {
         return eventStatus;
     }
 
-    public void setEventStatus(Status eventStatus) {
+    public void setEventStatus(EventStatus eventStatus) {
         this.eventStatus = eventStatus;
     }
 
-    abstract void createReminder(long seconds);
-    abstract void cancelReminder();
+    public abstract void createReminder(Date date1, Date date2, long seconds);
+    public abstract void cancelReminder();
 }
 
